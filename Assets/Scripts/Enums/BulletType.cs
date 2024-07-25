@@ -1,4 +1,5 @@
 public enum BulletType
 {
-    Standart
+    Standart,
+    Explosion
 }

@@ -574,6 +574,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffaa8da8001fb14fbd2977479ee92f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &297358079 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+  m_PrefabInstance: {fileID: 806828003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &297358080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+  m_PrefabInstance: {fileID: 806828003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6e8266e2d4dcf4e875eb88e72175e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &467273812
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +997,75 @@ MonoBehaviour:
   - {fileID: 1672412661}
   - {fileID: 504012480}
   _immovableEnemySpots: []
+--- !u!1001 &806828003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1299242094}
+    m_Modifications:
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490179067893083305, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: m_Name
+      value: AutoShootWeapon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: _bulletType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: _coldownTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: _maxDistanceToShoot
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
 --- !u!1 &880800396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 540780815}
+  - {fileID: 297358079}
   - {fileID: 1514344054}
   m_Father: {fileID: 488464817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1443,6 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootingWeaponList:
   - {fileID: 1218846073}
+  - {fileID: 297358080}
   _detectionRadius: 20
   _targetLayer:
     serializedVersion: 2
@@ -2060,6 +2147,10 @@ PrefabInstance:
     - target: {fileID: 1490179067893083305, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
       propertyPath: m_Name
       value: AutoShootWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: _coldownTime
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

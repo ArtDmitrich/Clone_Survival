@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    protected float _damageValue;
     private LayerMask _targetLayer;
-    private float _damageValue;
     private bool _isPiercing;
 
     private PooledItem PooledItem { get { return _pooledItem = _pooledItem ?? GetComponent<PooledItem>(); } }
@@ -15,12 +15,16 @@ public class Bullet : MonoBehaviour
         _damageValue = damageValue;
         _isPiercing = isPiercing;
     }
+    protected virtual void TakeDamage(ITakingDamage target)
+    {
+        target.TakeDamage(_damageValue);
+    }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((_targetLayer & (1 << collision.gameObject.layer)) != 0 && collision.gameObject.TryGetComponent<ITakingDamage>(out var target))
-        {
-            target.TakeDamage(_damageValue);
+        {            
+            TakeDamage(target);
 
             if (!_isPiercing)
             {
