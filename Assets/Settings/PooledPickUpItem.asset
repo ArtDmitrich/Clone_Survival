@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ed3f5bd30501044b2890914c1ccf1d, type: 3}
+  m_Name: PooledPickUpItem
+  m_EditorClassIdentifier: 
+  _pooledItems:
+  - Key: Gold
+    Value: {fileID: 1287731215038942326, guid: 611deb19015c52c47921336bd89bdc0c, type: 3}
+  - Key: Heal
+    Value: {fileID: 3510768966241027512, guid: b05ecb466f322a142ad19750c2e3271c, type: 3}
+  - Key: SmallMana
+    Value: {fileID: 6432096739248737818, guid: 68ad69346197f45449199c611220a305, type: 3}
+  - Key: MediumMana
+    Value: {fileID: 4327706102988607084, guid: 9634d40667ca42149b49c3103463019d, type: 3}
+  - Key: LargeMana
+    Value: {fileID: 6200469088277737562, guid: 0f2ac4ec6032a364585a98f7d19f8b19, type: 3}

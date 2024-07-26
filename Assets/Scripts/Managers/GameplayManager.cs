@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
+    [SerializeField] private int _healItemColdown;
+    [SerializeField] private int _goldItemColdown;
+    [SerializeField] private int _manaItemColdown;
+
+    [SerializeField] private int _smallManaChance = 60;
+    [SerializeField] private int _mediumManaChance = 30;
+    [SerializeField] private int _largeManaChance = 10;
+
     [SerializeField] private PlayerController _player;
     [SerializeField] private int _playerLives;
     [SerializeField] private WaveSettings _waves;
@@ -10,18 +18,10 @@ public class GameplayManager : MonoBehaviour
     private bool _wavesIsOver;
     private bool _chunksIsOver;
 
-    //private void Update()
-    //{
-    //    //Calling method for debug
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        StartCoroutine(StartWave(_waves.WavesDatas[0]));
-    //    }
-    //}
-
     private void Start()
     {
-         StartCoroutine(StartLevel());
+        StartCoroutine(StartLevel());
+        StartAddingPickUpItem();
     }
 
     private IEnumerator StartLevel()
@@ -30,11 +30,11 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < _waves.WavesDatas.Count; i++)
         {
-            StartCoroutine(StartWave(_waves.WavesDatas[i]));
+            //StartCoroutine(StartWave(_waves.WavesDatas[i]));
 
-            yield return new WaitForSeconds(_waves.TimeToNextWave);
+            yield return StartCoroutine(StartWave(_waves.WavesDatas[i]));
         }
-
+        
         _wavesIsOver = true;
     }
 
@@ -44,9 +44,9 @@ public class GameplayManager : MonoBehaviour
 
         foreach (var chunk in waveData.chunksOfWaves)
         {
-            StartCoroutine(StartChunk(chunk));
+            //StartCoroutine(StartChunk(chunk));
 
-            yield return new WaitForSeconds(chunk.TimeToNextChunk);
+            yield return StartCoroutine(StartChunk(chunk));
         }
 
         _chunksIsOver = true;
@@ -59,6 +59,48 @@ public class GameplayManager : MonoBehaviour
 
             yield return new WaitForSeconds(chunk.EnemySpawnColdown);
         }
+    }
+
+    private void StartAddingPickUpItem()
+    {
+        AddHeal();
+        AddGold();
+        AddMana();
+    }
+
+    private void AddHeal()
+    {
+        TimersManager.Instance.SetTimer(_healItemColdown, AddHeal);
+        PickUpItemsManager.Instance.AddPickUpItem(PickUpItemType.Heal, _player.transform.position);
+    }
+    private void AddGold()
+    {
+        TimersManager.Instance.SetTimer(_goldItemColdown, AddGold);
+        PickUpItemsManager.Instance.AddPickUpItem(PickUpItemType.Gold, _player.transform.position);
+    }
+
+    private void AddMana()
+    {
+        TimersManager.Instance.SetTimer(_manaItemColdown, AddMana);
+
+        var chance = Random.Range(1, 101);
+
+        PickUpItemType newItemType;
+
+        if (chance <= _largeManaChance)
+        {
+            newItemType = PickUpItemType.LargeMana;
+        }
+        else if (chance <= _mediumManaChance) 
+        {
+            newItemType = PickUpItemType.MediumMana;
+        }
+        else
+        {
+            newItemType = PickUpItemType.SmallMana;
+        }
+
+        PickUpItemsManager.Instance.AddPickUpItem(newItemType, _player.transform.position);
     }
 
     private void AllEnemyDead()

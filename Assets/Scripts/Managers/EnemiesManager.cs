@@ -65,6 +65,6 @@ public class EnemiesManager : ItemManager<EnemiesManager>
 
         RemoveEnemy(enemy);
 
-        enemy.gameObject.SetActive(false);
+        //TODO: Resource manager logic
     }
 }
