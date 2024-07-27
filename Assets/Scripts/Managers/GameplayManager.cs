@@ -20,7 +20,7 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartLevel());
+        StartCoroutine(StartLevel());        
         StartAddingPickUpItem();
     }
 

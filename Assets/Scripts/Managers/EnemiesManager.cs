@@ -65,6 +65,6 @@ public class EnemiesManager : ItemManager<EnemiesManager>
 
         RemoveEnemy(enemy);
 
-        //TODO: Resource manager logic
+        ResourceManager.Instance.PlayerKilledEnemy();
     }
 }

@@ -9,9 +9,13 @@ public class InputController : MonoBehaviour
     public UnityAction<Vector2> PlayerMovementStarted;
     public UnityAction PlayerMovementStoped;
 
-    private InputActions Input { get { return _input = _input ?? new InputActions(); } }
     private InputActions _input;
-    
+
+    private void Awake()
+    {
+        _input = new InputActions();
+    }
+
     private void Movement_started(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         var direction = ctx.ReadValue<Vector2>();
@@ -25,17 +29,17 @@ public class InputController : MonoBehaviour
 
     private void OnEnable()
     {
-        Input.Enable();
+        _input.Enable();
 
-        Input.Player.Movement.performed += Movement_started;
-        Input.Player.Movement.canceled += Movement_canceled;
+        _input.Player.Movement.performed += Movement_started;
+        _input.Player.Movement.canceled += Movement_canceled;
     }
 
     private void OnDisable()
     {
-        Input.Disable();
+        _input.Disable();
 
-        Input.Player.Movement.started -= Movement_started;
-        Input.Player.Movement.canceled -= Movement_canceled;
+        _input.Player.Movement.started -= Movement_started;
+        _input.Player.Movement.canceled -= Movement_canceled;
     }
 }

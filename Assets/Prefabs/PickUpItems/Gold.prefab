@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 0
   Value: 100
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  Attributes:
+    Gold: 100
+    Heal: 0
+    Mana: 0

@@ -96,9 +96,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 4
   Value: 50
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  Attributes:
+    Gold: 0
+    Heal: 50
+    Mana: 0
 --- !u!1 &2353434524349545299
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,6 @@ public class PickUpItemsManager : ItemManager<PickUpItemsManager>
     {
         pickUpItem.ItemPickedUp -= ItemPickedUp;
 
-        //TODO: Resource manager logic
+        ResourceManager.Instance.PlayerPickUpItem(pickUpItem);
     }
 }
