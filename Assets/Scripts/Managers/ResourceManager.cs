@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    public UnityAction<float> PlayerHealed;
+
     [SerializeField] private float _manaToNextLevel;
 
     [Tooltip("The parameter is set in percentage. For example: 0.3 = increase mana at the next level by 30%")]
@@ -14,8 +16,8 @@ public class ResourceManager : Singleton<ResourceManager>
     [SerializeField] private int _enemiesKilled;
 
     private int _currentLevel = 1;
-    private int _currentMana;
-    private int _gold;
+    private float _currentMana;
+    private float _gold;
 
     public void PlayerPickUpItem(PickUpItem pickUpItem)
     {
@@ -43,7 +45,7 @@ public class ResourceManager : Singleton<ResourceManager>
         AddMana(_manaForKillingEnemy);
     }
 
-    private void AddMana(int mana)
+    private void AddMana(float mana)
     {
         _currentMana += mana;
 
@@ -57,13 +59,13 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
-    private void AddGold(int gold)
+    private void AddGold(float gold)
     {
         _gold += gold;
     }
 
-    private void AddHeal(int heal)
+    private void AddHeal(float heal)
     {
-        //TODO: Heal logic
+        PlayerHealed?.Invoke(heal);
     }
 }

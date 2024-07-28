@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 292452600}
   - component: {fileID: 292452599}
   - component: {fileID: 292452598}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PooledItemDeadZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,12 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afebd084fff01942b93fc57d3c01f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healItemColdown: 15
-  _goldItemColdown: 30
-  _manaItemColdown: 5
-  _smallManaChance: 60
-  _mediumManaChance: 30
-  _largeManaChance: 10
+  _pickUpItemColdown: 3
   _player: {fileID: 488464814}
   _playerLives: 1
   _waves: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
@@ -1101,7 +1096,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1603,6 +1598,17 @@ MonoBehaviour:
   _spawnerSettings: {fileID: 11400000, guid: 6ada914ba1288da40afa11fcbacb80bd, type: 2}
   _poolPrewarming: 1
   _startPoolSize: 5
+  _pickUpItemDropChances:
+  - Key: Gold
+    Chance: 3
+  - Key: Heal
+    Chance: 20
+  - Key: SmallMana
+    Chance: 55
+  - Key: MediumMana
+    Chance: 15
+  - Key: LargeMana
+    Chance: 7
   _maxRangeSpot: 25
 --- !u!1 &1097581288
 GameObject:

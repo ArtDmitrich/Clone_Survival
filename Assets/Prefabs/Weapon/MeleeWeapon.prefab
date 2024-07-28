@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2759337464974594739}
   - component: {fileID: 6064659769662890607}
   - component: {fileID: 5330567854736609790}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

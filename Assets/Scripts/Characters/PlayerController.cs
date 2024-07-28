@@ -30,6 +30,11 @@ public class PlayerController : MovableCharacter
         base.OnEnable();
         _input.PlayerMovementStarted += StartMovement;
         _input.PlayerMovementStoped += StopMovement;
+
+        if (ResourceManager.Instance != null)
+        {
+            ResourceManager.Instance.PlayerHealed += HealthComponent.Heal;
+        }
     }
 
     protected override void OnDisable()
@@ -37,5 +42,10 @@ public class PlayerController : MovableCharacter
         base.OnDisable();
         _input.PlayerMovementStarted -= StartMovement;
         _input.PlayerMovementStoped -= StopMovement;
+
+        if (ResourceManager.Instance != null)
+        {
+            ResourceManager.Instance.PlayerHealed -= HealthComponent.Heal;
+        }
     }
 }

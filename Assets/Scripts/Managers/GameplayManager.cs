@@ -3,13 +3,7 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    [SerializeField] private int _healItemColdown;
-    [SerializeField] private int _goldItemColdown;
-    [SerializeField] private int _manaItemColdown;
-
-    [SerializeField] private int _smallManaChance = 60;
-    [SerializeField] private int _mediumManaChance = 30;
-    [SerializeField] private int _largeManaChance = 10;
+    [SerializeField] private int _pickUpItemColdown;
 
     [SerializeField] private PlayerController _player;
     [SerializeField] private int _playerLives;
@@ -20,8 +14,8 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartLevel());        
-        StartAddingPickUpItem();
+        StartCoroutine(StartLevel());
+        AddingPickUpItem();
     }
 
     private IEnumerator StartLevel()
@@ -30,8 +24,6 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < _waves.WavesDatas.Count; i++)
         {
-            //StartCoroutine(StartWave(_waves.WavesDatas[i]));
-
             yield return StartCoroutine(StartWave(_waves.WavesDatas[i]));
         }
         
@@ -44,8 +36,6 @@ public class GameplayManager : MonoBehaviour
 
         foreach (var chunk in waveData.chunksOfWaves)
         {
-            //StartCoroutine(StartChunk(chunk));
-
             yield return StartCoroutine(StartChunk(chunk));
         }
 
@@ -61,46 +51,10 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    private void StartAddingPickUpItem()
+    private void AddingPickUpItem()
     {
-        AddHeal();
-        AddGold();
-        AddMana();
-    }
-
-    private void AddHeal()
-    {
-        TimersManager.Instance.SetTimer(_healItemColdown, AddHeal);
-        PickUpItemsManager.Instance.AddPickUpItem(PickUpItemType.Heal, _player.transform.position);
-    }
-    private void AddGold()
-    {
-        TimersManager.Instance.SetTimer(_goldItemColdown, AddGold);
-        PickUpItemsManager.Instance.AddPickUpItem(PickUpItemType.Gold, _player.transform.position);
-    }
-
-    private void AddMana()
-    {
-        TimersManager.Instance.SetTimer(_manaItemColdown, AddMana);
-
-        var chance = Random.Range(1, 101);
-
-        PickUpItemType newItemType;
-
-        if (chance <= _largeManaChance)
-        {
-            newItemType = PickUpItemType.LargeMana;
-        }
-        else if (chance <= _mediumManaChance) 
-        {
-            newItemType = PickUpItemType.MediumMana;
-        }
-        else
-        {
-            newItemType = PickUpItemType.SmallMana;
-        }
-
-        PickUpItemsManager.Instance.AddPickUpItem(newItemType, _player.transform.position);
+        TimersManager.Instance.SetTimer(_pickUpItemColdown, AddingPickUpItem);
+        PickUpItemsManager.Instance.AddPickUpItem(_player.transform.position);
     }
 
     private void AllEnemyDead()
@@ -133,13 +87,20 @@ public class GameplayManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemiesManager.Instance.AllEnemiesDead += AllEnemyDead;
+        if (EnemiesManager.Instance != null)
+        {
+            EnemiesManager.Instance.AllEnemiesDead += AllEnemyDead;
+        }
         _player.CharacterDead += PlayerDead;
     }
 
     private void OnDisable()
     {
-        EnemiesManager.Instance.AllEnemiesDead -= AllEnemyDead;
+        if (EnemiesManager.Instance != null)
+        {
+            EnemiesManager.Instance.AllEnemiesDead -= AllEnemyDead;
+        }
+
         _player.CharacterDead -= PlayerDead;
     }
 }
