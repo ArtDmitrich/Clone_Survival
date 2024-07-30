@@ -5,6 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WaveSettings", order = 1)]
 public class WaveSettings : ScriptableObject
 {
-    public List<WavesData> WavesDatas;
-    public float TimeToNextWave;
+    public List<WaveData> WavesDatas;
 }

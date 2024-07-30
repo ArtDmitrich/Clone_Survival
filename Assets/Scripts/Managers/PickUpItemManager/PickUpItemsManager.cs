@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class PickUpItemsManager : ItemManager<PickUpItemsManager>
 {
-    [Tooltip("The sum of all chances must not exceed 100. At the beginning of each game, the list is sorted from lowest to highest chance.")]
-    [SerializeField] private List<PickUpItemChanceData> _pickUpItemDropChances = new List<PickUpItemChanceData>();
+    [Tooltip("The sum of all chances must not exceed 100.")]
+    [SerializeField] private ItemsWithChances _pickUpItemsChances;
+
     [SerializeField] private float _maxRangeSpot;
 
     private readonly List<PickUpItem> _pickUpItems = new List<PickUpItem>();
 
-    private void Start()
+    public void SpawnRandomPickUpItem(Vector2 centerPos)
     {
-        PickUpItemsChancesSorter.SortArray(_pickUpItemDropChances, 0, _pickUpItemDropChances.Count - 1);
+        AddPickUpItem(_pickUpItemsChances.GetRandomItemName(), centerPos);
     }
 
-    public void AddPickUpItem(Vector2 centerPos)
+    private void AddPickUpItem(string pickUpItemName, Vector2 centerPos)
     {
-        var item = GetPickUpItem(GetRandomPickUpItemName());
+        var item = GetPickUpItem(pickUpItemName);
         
         if (item.gameObject.TryGetComponent<PickUpItem>(out var pickUpItem))
         {
@@ -32,27 +33,6 @@ public class PickUpItemsManager : ItemManager<PickUpItemsManager>
     private PickUpItem GetPickUpItem(string pickUpItemName)
     {
         return _poolManager.GetPooledItem<PickUpItem>(pickUpItemName);
-    }
-
-    private string GetRandomPickUpItemName()
-    {
-        var chance = Random.Range(1, 101);
-
-        var index = 0;
-        var lastIndex = _pickUpItemDropChances.Count - 1;
-
-        do
-        {
-            if (chance <= _pickUpItemDropChances[index].Chance)
-            {
-                return _pickUpItemDropChances[index].Key;
-            }
-
-            index++;
-        }
-        while (index < lastIndex);
-
-        return _pickUpItemDropChances[lastIndex].Key;
     }
 
     private Vector2 GetRadomPosition(Vector2 centerPos)

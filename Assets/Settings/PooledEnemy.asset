@@ -17,5 +17,5 @@ MonoBehaviour:
     Value: {fileID: -1095803139702975105, guid: ea0fb4986fe158141b46cb47ec3a41dc, type: 3}
   - Key: Pursuer
     Value: {fileID: 8476067012017208411, guid: d73760d37dc62c244b47821b82c1aa7f, type: 3}
-  - Key: Shooting
+  - Key: Immovable
     Value: {fileID: 692352559109708363, guid: 01d6a8ce2c1781d4ca181cc90e023c26, type: 3}

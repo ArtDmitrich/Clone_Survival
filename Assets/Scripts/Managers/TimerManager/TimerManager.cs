@@ -21,6 +21,11 @@ public class TimersManager : Singleton<TimersManager>
         _timers.Add(timer);
     }
 
+    public void RemoveAllTmers()
+    {
+        _timers.Clear();
+    }
+
     private void Update()
     {
         for (int i = 0; i < _timers.Count; i++)

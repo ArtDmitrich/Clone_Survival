@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,14 +8,52 @@ public class EnemiesManager : ItemManager<EnemiesManager>
 {
     public UnityAction AllEnemiesDead;
 
+    [Tooltip("The sum of all chances must not exceed 100.")]
+    [SerializeField] private ItemsWithChances _enemiesSpawnChances;
+
+    [SerializeField] private WaveSettings _specialWaves;
+
     [SerializeField] private List<Transform> _movableEnemySpots = new List<Transform>();
     [SerializeField] private List<Transform> _immovableEnemySpots = new List<Transform>();
 
-    private List<Character> _enemies = new List<Character>();
+    private readonly List<Character> _enemies = new List<Character>();
+    private int _currentWaveNumber = 0;
 
-    public void AddEnemy(EnemyType enemyType, Transform player)
+    public void SpawnRandomEnemy(Transform player)
     {
-        var item = GetEnemy(enemyType.ToString());
+        AddEnemy(_enemiesSpawnChances.GetRandomItemName(), player);
+    }
+
+    public void StartNextSpecialWave(Transform player)
+    {           
+        StartCoroutine(StartWave(_specialWaves.WavesDatas[_currentWaveNumber], player));
+
+        if (_currentWaveNumber < _specialWaves.WavesDatas.Count - 1)
+        {
+            _currentWaveNumber++;
+        }
+    }
+
+    private IEnumerator StartWave(WaveData waveData, Transform player)
+    {
+        foreach (var chunk in waveData.chunksOfWaves)
+        {
+            yield return StartCoroutine(StartChunk(chunk, player));
+        }
+    }
+    private IEnumerator StartChunk(ChunkWaveData chunk, Transform player)
+    {
+        for (var i = 0; i < chunk.Count; i++)
+        {
+            AddEnemy(chunk.EnemyType.ToString(), player);
+
+            yield return new WaitForSeconds(chunk.EnemySpawnColdown);
+        }
+    }
+
+    private void AddEnemy(string enemyName, Transform player)
+    {
+        var item = GetEnemy(enemyName);
 
         if (item != null)
         {
@@ -32,6 +72,9 @@ public class EnemiesManager : ItemManager<EnemiesManager>
             {
                 var newPos = _immovableEnemySpots[Random.Range(0, _immovableEnemySpots.Count)].position;
                 immovableEnemy.transform.position = newPos;
+
+                immovableEnemy.CharacterDead += EnemyKilledByPlayer;
+                _enemies.Add(immovableEnemy);
             }
         }
     }

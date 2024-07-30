@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f938b5377cfa83547a79ef97a6f10568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponList:
+  _shootingWeaponList:
   - {fileID: 4414669398671900102}
   _detectionRadius: 20
   _targetLayer:
@@ -69,7 +69,7 @@ MonoBehaviour:
   _damageValue: 5
   _coldownTime: 2
   Target: {fileID: 0}
-  _bulletName: StandartBullet
+  _bulletType: 0
   _isPercing: 0
   _maxDistanceToShoot: 15
   _bulletSpeedMultiplier: 0.4

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public struct WavesData
+public struct WaveData
 {
     public string Title;
-    public List<ChunkWavesData> chunksOfWaves;
+    public List<ChunkWaveData> chunksOfWaves;
 }

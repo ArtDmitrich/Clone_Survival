@@ -16,19 +16,11 @@ MonoBehaviour:
   - Title: Wave_1
     chunksOfWaves:
     - EnemyType: 1
-      Count: 40
-      TimeToNextChunk: 5
+      Count: 200
       EnemySpawnColdown: 0.3
     - EnemyType: 2
-      Count: 20
-      TimeToNextChunk: 2
-      EnemySpawnColdown: 0.5
-    - EnemyType: 2
-      Count: 20
-      TimeToNextChunk: 5
-      EnemySpawnColdown: 0.6
-    - EnemyType: 1
-      Count: 30
-      TimeToNextChunk: 2
+      Count: 50
       EnemySpawnColdown: 0.2
-  TimeToNextWave: 0
+    - EnemyType: 0
+      Count: 30
+      EnemySpawnColdown: 0.5
