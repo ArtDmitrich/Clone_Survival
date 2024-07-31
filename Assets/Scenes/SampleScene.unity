@@ -1276,7 +1276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
       propertyPath: _maxDistanceToShoot
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3305,7 +3305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
       propertyPath: _coldownTime
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
