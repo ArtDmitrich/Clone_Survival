@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _spawnEnemyColdown;
     [SerializeField] private float _specialWaveColdown;
 
+    [Inject] private ResourceManager _resourceManager;
+    [Inject] private TimersManager _timersManager;
+    [Inject] private PickUpItemsManager _pickUpItemsManager;
+    [Inject] private EnemiesManager _enemiesManager;
+
     private PlayerController _playerController;
     private HealthComponent _playerHealthComponent;
-    
+            
     private void Awake()
     {
         _playerController = _player.GetComponent<PlayerController>();
@@ -27,27 +33,27 @@ public class GameplayManager : MonoBehaviour
 
     private void StartGame()
     {
-        TimersManager.Instance.SetTimer(_specialWaveColdown, StartNextSpecialWave);
+        _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
         SpawnRandomPickUpItem();
         SpawnRandomEnemy();
     }
 
     private void SpawnRandomEnemy()
     {
-        TimersManager.Instance.SetTimer(_spawnEnemyColdown, SpawnRandomEnemy);
-        EnemiesManager.Instance.SpawnRandomEnemy(_player);
+        _timersManager.SetTimer(_spawnEnemyColdown, SpawnRandomEnemy);
+        _enemiesManager.SpawnRandomEnemy(_player);
     }
 
     private void StartNextSpecialWave()
     {
-        TimersManager.Instance.SetTimer(_specialWaveColdown, StartNextSpecialWave);
-        EnemiesManager.Instance.StartNextSpecialWave(_player);
+        _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
+        _enemiesManager.StartNextSpecialWave(_player);
     }
 
     private void SpawnRandomPickUpItem()
     {
-        TimersManager.Instance.SetTimer(_pickUpItemColdown, SpawnRandomPickUpItem);
-        PickUpItemsManager.Instance.SpawnRandomPickUpItem(_player.position);
+        _timersManager.SetTimer(_pickUpItemColdown, SpawnRandomPickUpItem);
+        _pickUpItemsManager.SpawnRandomPickUpItem(_player.position);
     }
 
     private void AllEnemyDead()
@@ -79,30 +85,17 @@ public class GameplayManager : MonoBehaviour
     {
         _playerController.CharacterDead += PlayerDead;
 
-        if (EnemiesManager.Instance != null)
-        {
-            EnemiesManager.Instance.AllEnemiesDead += AllEnemyDead;
-        }
+        _enemiesManager.AllEnemiesDead += AllEnemyDead;
 
-        if (ResourceManager.Instance != null)
-        {
-            ResourceManager.Instance.PlayerHealed += _playerHealthComponent.Heal;
-        }
+        _resourceManager.PlayerHealed += _playerHealthComponent.Heal;
     }
 
     private void OnDisable()
     {
         _playerController.CharacterDead -= PlayerDead;
 
-        if (EnemiesManager.Instance != null)
-        {
-            EnemiesManager.Instance.AllEnemiesDead -= AllEnemyDead;
-        }
+        _enemiesManager.AllEnemiesDead -= AllEnemyDead;
 
-
-        if (ResourceManager.Instance != null)
-        {
-            ResourceManager.Instance.PlayerHealed -= _playerHealthComponent.Heal;
-        }
+        _resourceManager.PlayerHealed -= _playerHealthComponent.Heal;
     }
 }

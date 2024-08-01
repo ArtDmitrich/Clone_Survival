@@ -1,7 +1,10 @@
 using UnityEngine;
+using Zenject;
 
 public class PooledItemDeadZone : MonoBehaviour
 {
+    [Inject] private EnemiesManager _enemiesManager;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ReleasePooledItem(collision.gameObject);
@@ -11,7 +14,7 @@ public class PooledItemDeadZone : MonoBehaviour
     {
         if (item.TryGetComponent<Character>(out var character))
         {
-            EnemiesManager.Instance.RemoveEnemy(character);
+            _enemiesManager.RemoveEnemy(character);
         }
 
         if (item.TryGetComponent<PooledItem>(out var pooldeItem))

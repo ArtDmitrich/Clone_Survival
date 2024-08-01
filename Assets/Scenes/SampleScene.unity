@@ -719,7 +719,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputController: {fileID: 980201006}
-  _gameController: {fileID: 0}
+  _resourceManager: {fileID: 1506226228}
+  _timersManager: {fileID: 390186661}
+  _pickUpItemsManager: {fileID: 1068090695}
+  EnemiesManager: {fileID: 713066562}
 --- !u!1 &488464813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2494,9 @@ MonoBehaviour:
   _increaseManaPerLevel: 0.2
   _manaForKillingEnemy: 5
   _enemiesKilled: 0
+  _currentLevel: 1
+  _currentMana: 0
+  _gold: 0
 --- !u!4 &1514344054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3307013333915749998, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimersManager : Singleton<TimersManager>
+public class TimersManager : MonoBehaviour
 {
     private readonly List<CustomTimer> _timers = new List<CustomTimer>();
 
