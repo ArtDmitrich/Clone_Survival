@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ResourceManager : Singleton<ResourceManager>
+public class ResourceManager : MonoBehaviour
 {
     public UnityAction<float> PlayerHealed;
 
@@ -15,9 +15,9 @@ public class ResourceManager : Singleton<ResourceManager>
     [SerializeField] private int _manaForKillingEnemy;
     [SerializeField] private int _enemiesKilled;
 
-    private int _currentLevel = 1;
-    private float _currentMana;
-    private float _gold;
+    [SerializeField] private int _currentLevel = 1;
+    [SerializeField] private float _currentMana;
+    [SerializeField] private float _gold;
 
     public void PlayerPickUpItem(PickUpItem pickUpItem)
     {

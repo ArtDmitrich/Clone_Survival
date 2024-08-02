@@ -1,4 +1,4 @@
-public class BulletManager : ItemManager<BulletManager>
+public class BulletManager : ItemManagerSingleton<BulletManager>
 {
     public Bullet GetBullet(string bulletName)
     {

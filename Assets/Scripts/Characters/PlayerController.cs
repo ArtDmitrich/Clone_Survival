@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 using Zenject;
 
 public class PlayerController : MovableCharacter
 {
     [SerializeField] private int _damageReduction;
-    [Inject] private InputController _input;
+
+    private InputController _input;
+
+    [Inject]
+    private void Construct(InputController inputController)
+    {
+        _input = inputController;
+    }
 
     public override void TakeDamage(float damage)
     {

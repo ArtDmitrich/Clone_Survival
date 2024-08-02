@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManagerSingleton<T> : Singleton<T> where T : MonoBehaviour
 {
     [SerializeField] protected SpawnerSettings _spawnerSettings;
 

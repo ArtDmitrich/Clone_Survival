@@ -216,50 +216,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 682490843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &128205607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 128205608}
-  - component: {fileID: 128205609}
-  m_Layer: 0
-  m_Name: TargetRadar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &128205608
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128205607}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1851669448}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &128205609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128205607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2848601fef61a08419f44ae61149b757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &166624305
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +675,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputController: {fileID: 980201006}
-  _gameController: {fileID: 0}
+  _resourceManager: {fileID: 1506226228}
+  _timersManager: {fileID: 390186661}
+  _pickUpItemsManager: {fileID: 1068090695}
+  _enemiesManager: {fileID: 713066562}
 --- !u!1 &488464813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,11 +1131,11 @@ MonoBehaviour:
   _enemiesSpawnChances:
     ItemDropChances:
     - Key: Movable
-      Chance: 60
+      Chance: 50
     - Key: Pursuer
-      Chance: 25
+      Chance: 40
     - Key: Immovable
-      Chance: 5
+      Chance: 10
   _specialWaves: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
   _movableEnemySpots:
   - {fileID: 1654454148}
@@ -2491,6 +2450,9 @@ MonoBehaviour:
   _increaseManaPerLevel: 0.2
   _manaForKillingEnemy: 5
   _enemiesKilled: 0
+  _currentLevel: 1
+  _currentMana: 0
+  _gold: 0
 --- !u!4 &1514344054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3307013333915749998, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
@@ -2865,7 +2827,6 @@ Transform:
   - {fileID: 1158666743}
   - {fileID: 2120527976}
   - {fileID: 2127254489}
-  - {fileID: 128205608}
   - {fileID: 711457318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

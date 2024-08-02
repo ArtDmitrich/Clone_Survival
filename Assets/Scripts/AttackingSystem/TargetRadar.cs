@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TargetRadar: Singleton<TargetRadar>
+public class TargetRadar
 {
     public Transform FindNearestTarget(Vector3 position, float detectionRadius, LayerMask targetLayer)
     {

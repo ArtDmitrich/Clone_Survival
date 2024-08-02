@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
-public class EnemiesManager : ItemManager<EnemiesManager>
+public class EnemiesManager : ItemManager
 {
     public UnityAction AllEnemiesDead;
 
@@ -18,6 +18,14 @@ public class EnemiesManager : ItemManager<EnemiesManager>
 
     private readonly List<Character> _enemies = new List<Character>();
     private int _currentWaveNumber = 0;
+
+    private ResourceManager _resourceManager;
+
+    [Inject]
+    private void Construct(ResourceManager resourceManager)
+    {
+        _resourceManager = resourceManager;
+    }
 
     public void SpawnRandomEnemy(Transform player)
     {
@@ -108,6 +116,6 @@ public class EnemiesManager : ItemManager<EnemiesManager>
 
         RemoveEnemy(enemy);
 
-        ResourceManager.Instance.PlayerKilledEnemy();
+        _resourceManager.PlayerKilledEnemy();
     }
 }
