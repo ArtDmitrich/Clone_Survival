@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows;
+using Zenject;
 
 public class AutoShootWeapon : Weapon
 {
@@ -11,11 +13,14 @@ public class AutoShootWeapon : Weapon
     [SerializeField] private float _bulletSpeedMultiplier = 1.0f;
 
     private float _sqrMaxDistanceToShoot;
+    private BulletManager _bulletManager;
 
     private void Start()
     {
+        _canAttack = true;
         _sqrMaxDistanceToShoot = _maxDistanceToShoot * _maxDistanceToShoot;
-    }
+        _bulletManager = BulletManager.Instance;
+    }    
 
     private void Update()
     {
@@ -48,7 +53,7 @@ public class AutoShootWeapon : Weapon
     {
         StartCoroutine(AttackingColdown(_coldownTime));
 
-        var bullet = BulletManager.Instance.GetBullet(_bulletType.ToString());
+        var bullet = _bulletManager.GetBullet(_bulletType.ToString());
 
         if (bullet.gameObject.TryGetComponent<IMovable>(out var movement))
         {

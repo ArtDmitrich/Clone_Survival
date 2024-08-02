@@ -3,7 +3,13 @@ using Zenject;
 
 public class PooledItemDeadZone : MonoBehaviour
 {
-    [Inject] private EnemiesManager _enemiesManager;
+    private EnemiesManager _enemiesManager;
+
+    [Inject]
+    private void Construct(EnemiesManager enemiesManager)
+    {
+        _enemiesManager = enemiesManager;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

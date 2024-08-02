@@ -8,8 +8,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float _damageValue;
     [SerializeField] protected float _coldownTime;
 
-    protected bool _canAttack = true;
-    
+    protected bool _canAttack;
+
+    protected void OnEnable()
+    {
+        _canAttack = true;
+    }
+
     protected IEnumerator AttackingColdown(float coldownTime)
     {
         _canAttack = false;

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows;
 using Zenject;
 
 public class GameplayManager : MonoBehaviour
@@ -12,14 +13,23 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _spawnEnemyColdown;
     [SerializeField] private float _specialWaveColdown;
 
-    [Inject] private ResourceManager _resourceManager;
-    [Inject] private TimersManager _timersManager;
-    [Inject] private PickUpItemsManager _pickUpItemsManager;
-    [Inject] private EnemiesManager _enemiesManager;
+    private ResourceManager _resourceManager;
+    private TimersManager _timersManager;
+    private PickUpItemsManager _pickUpItemsManager;
+    private EnemiesManager _enemiesManager;
 
     private PlayerController _playerController;
     private HealthComponent _playerHealthComponent;
-            
+
+    [Inject]
+    private void Construct(ResourceManager resourceManager, TimersManager timersManager, PickUpItemsManager pickUpItemsManager, EnemiesManager enemiesManager)
+    {
+        _resourceManager = resourceManager;
+        _timersManager = timersManager;
+        _pickUpItemsManager = pickUpItemsManager;
+        _enemiesManager = enemiesManager;
+    }
+
     private void Awake()
     {
         _playerController = _player.GetComponent<PlayerController>();

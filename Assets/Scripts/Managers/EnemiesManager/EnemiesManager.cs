@@ -16,10 +16,16 @@ public class EnemiesManager : ItemManager
     [SerializeField] private List<Transform> _movableEnemySpots = new List<Transform>();
     [SerializeField] private List<Transform> _immovableEnemySpots = new List<Transform>();
 
-    [Inject] private ResourceManager _resourceManager;
-
     private readonly List<Character> _enemies = new List<Character>();
     private int _currentWaveNumber = 0;
+
+    private ResourceManager _resourceManager;
+
+    [Inject]
+    private void Construct(ResourceManager resourceManager)
+    {
+        _resourceManager = resourceManager;
+    }
 
     public void SpawnRandomEnemy(Transform player)
     {
