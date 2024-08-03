@@ -8,13 +8,6 @@ public class AttackingSystem : MonoBehaviour
     [SerializeField] private float _detectionRadius;
     [SerializeField] private LayerMask _targetLayer;
 
-    private TargetRadar _targetRadar;
-
-    private void Start()
-    {
-        _targetRadar = new TargetRadar();
-    }
-
     private void Update()
     {
         SetTargetToWeapons();
@@ -26,7 +19,7 @@ public class AttackingSystem : MonoBehaviour
         {
             if (_shootingWeaponList[i].Target == null)
             {
-                _shootingWeaponList[i].Target = _targetRadar.FindNearestTarget(transform.position, _detectionRadius, _targetLayer);
+                _shootingWeaponList[i].Target = TargetRadar.FindNearestTarget(transform.position, _detectionRadius, _targetLayer);
             }
         }
     }

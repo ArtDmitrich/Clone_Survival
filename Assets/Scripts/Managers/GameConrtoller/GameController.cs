@@ -1,9 +1,14 @@
+using UnityEngine;
+
 public class GameController : Singleton<GameController>
 {
-    public readonly GamePlayState PlayState = new GamePlayState();
-    public readonly GamePauseState PauseState = new GamePauseState();
-    public readonly GameWinState GameWinState = new GameWinState();
-    public readonly GameOverState GameOverState = new GameOverState();
+    public GameBaseState NextState;
+    public Scenes NextScene;
+
+    public readonly GameBaseState GameplayState = new GamePlayState();
+    public readonly GameBaseState MainMenuState = new MainMenuState();
+    public readonly GameBaseState BufferState = new BufferState();
+
 
     private GameBaseState _currentState;
     

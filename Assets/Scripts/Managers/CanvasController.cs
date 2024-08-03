@@ -9,14 +9,14 @@ public class CanvasController : MonoBehaviour
 
     private void CallPause()
     {
-        GameController.Instance.TransitionToState(GameController.Instance.PauseState);
+        //GameController.Instance.TransitionToState(GameController.Instance.PauseState);
         _gameMenu.SetActive(true);
         _pause.gameObject.SetActive(false);
     }
 
     private void ResumeGame()
     {
-        GameController.Instance.TransitionToState(GameController.Instance.PlayState);
+        //GameController.Instance.TransitionToState(GameController.Instance.GameplayState);
         _gameMenu.SetActive(false);
         _pause.gameObject.SetActive(true);
     }
