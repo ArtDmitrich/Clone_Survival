@@ -13,6 +13,5 @@ public class BufferState : GameBaseState
     public override void ExitState(GameController gameController)
     {
         SceneManager.LoadScene((int)gameController.NextScene);
-        gameController.TransitionToState(gameController.NextState);
     }
 }
