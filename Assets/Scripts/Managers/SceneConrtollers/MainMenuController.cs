@@ -8,14 +8,13 @@ public class MainMenuController : MonoBehaviour
     private SceneLoader _sceneLoader;
 
     [Inject]
-    private void Cnstruct(SceneLoader sceneLoader)
+    private void Costruct(SceneLoader sceneLoader)
     {
         _sceneLoader = sceneLoader;
     }
 
     public void LoadGamePlayScene()
     {
-        Debug.Log((int)Scenes.Gameplay);
         _sceneLoader.Load((int)Scenes.Gameplay);
     }
 }
