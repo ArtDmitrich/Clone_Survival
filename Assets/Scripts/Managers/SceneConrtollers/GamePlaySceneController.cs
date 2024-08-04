@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class GamePlaySceneManager : MonoBehaviour
+public class GamePlaySceneController : MonoBehaviour
 {
     public readonly GameplayBaseState PauseState = new PauseState();
     public readonly GameplayBaseState PlayState = new PlayState();
@@ -29,7 +29,7 @@ public class GamePlaySceneManager : MonoBehaviour
 
     private void BackToMainMenu()
     {
-        _sceneLoader.Load((int)Scenes.MainMenu);
+        _sceneLoader.Load(Scenes.MainMenu);
     }
 
     private void TransitionToState(GameplayBaseState state)

@@ -13,6 +13,8 @@ public class GameplayCanvas : MonoBehaviour
     [SerializeField] private Button _mainMenu;
     [SerializeField] private GameObject _gameMenu;
 
+    [SerializeField] private Image _loadingBackground;
+
     private void CallPause()
     {
         _gameMenu.SetActive(true);
@@ -31,11 +33,16 @@ public class GameplayCanvas : MonoBehaviour
 
     private void BackToMainMenu()
     {
+        _gameMenu.SetActive(false);
+        _loadingBackground.gameObject.SetActive(true);
+
         MainMenuPressed?.Invoke();
     }
 
     private void OnEnable()
     {
+        _loadingBackground.gameObject.SetActive(false);
+
         _pause.onClick.AddListener(CallPause);
         _resume.onClick.AddListener(ResumeGame);
         _mainMenu.onClick.AddListener(BackToMainMenu);
