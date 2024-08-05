@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class TargetRadar
+public static class TargetRadar
 {
-    public Transform FindNearestTarget(Vector3 position, float detectionRadius, LayerMask targetLayer)
+    public static Transform FindNearestTarget(Vector3 position, float detectionRadius, LayerMask targetLayer)
     {
         var colliders = Physics2D.OverlapCircleAll(position, detectionRadius, targetLayer);
 
