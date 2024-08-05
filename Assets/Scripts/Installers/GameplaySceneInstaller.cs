@@ -9,6 +9,7 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private PickUpItemsManager _pickUpItemsManager;
     [SerializeField] private EnemiesManager _enemiesManager;
     [SerializeField] private GameplayCanvas _gameplayCanvas;
+    [SerializeField] private GameplayManager _gameplayManager;
 
     public override void InstallBindings()
     {
@@ -18,5 +19,6 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<PickUpItemsManager>().FromInstance(_pickUpItemsManager).AsSingle().NonLazy();
         Container.Bind<EnemiesManager>().FromInstance(_enemiesManager).AsSingle().NonLazy();
         Container.Bind<GameplayCanvas>().FromInstance(_gameplayCanvas).AsSingle().NonLazy();
+        Container.Bind<GameplayManager>().FromInstance(_gameplayManager).AsSingle().NonLazy();
     }
 }

@@ -1,17 +1,23 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Windows;
+using UnityEngine.Events;
 using Zenject;
 
 public class GameplayManager : MonoBehaviour
 {
+    public UnityAction<bool> GameplayEnded;
+
     [SerializeField] private int _pickUpItemColdown;
 
     [SerializeField] private Transform _player;
     [SerializeField] private int _playerLives;
 
+    [SerializeField] private float _timeToSpawnFirstEnemy;
     [SerializeField] private float _spawnEnemyColdown;
+    [SerializeField] private float _minSpawnEnemyColdown;
     [SerializeField] private float _specialWaveColdown;
+
+    [SerializeField] private float _decreaseEnemyColdownValue;
+    [SerializeField] private int _enemySpawnCount;
 
     private ResourceManager _resourceManager;
     private TimersManager _timersManager;
@@ -36,28 +42,31 @@ public class GameplayManager : MonoBehaviour
         _playerHealthComponent = _player.GetComponent<HealthComponent>();
     }
 
-    private void Start()
-    {
-        StartGame();
-    }
-
-    private void StartGame()
+    public void StartGameplay()
     {
         _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
+        _timersManager.SetTimer(_timeToSpawnFirstEnemy, SpawnRandomEnemy);
         SpawnRandomPickUpItem();
-        SpawnRandomEnemy();
     }
 
     private void SpawnRandomEnemy()
     {
         _timersManager.SetTimer(_spawnEnemyColdown, SpawnRandomEnemy);
-        _enemiesManager.SpawnRandomEnemy(_player);
+        _enemiesManager.SpawnRandomEnemies(_player, _enemySpawnCount);
     }
 
     private void StartNextSpecialWave()
     {
         _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
         _enemiesManager.StartNextSpecialWave(_player);
+
+        _enemySpawnCount++;
+        _spawnEnemyColdown -= _decreaseEnemyColdownValue;
+
+        if (_spawnEnemyColdown <= _minSpawnEnemyColdown)
+        {
+            _spawnEnemyColdown = _minSpawnEnemyColdown;
+        }
     }
 
     private void SpawnRandomPickUpItem()
@@ -67,7 +76,7 @@ public class GameplayManager : MonoBehaviour
     }
 
     private void AllEnemyDead()
-    {        
+    {
         PlayerWin();
     }
 
@@ -84,11 +93,13 @@ public class GameplayManager : MonoBehaviour
     private void PlayerWin()
     {
         Debug.LogWarning("PlayerWin!!!");
+        GameplayEnded?.Invoke(true);
     }
 
     private void PlayerLose()
     {
         Debug.LogWarning("GAME OVER.");
+        GameplayEnded?.Invoke(false);
     }
 
     private void OnEnable()

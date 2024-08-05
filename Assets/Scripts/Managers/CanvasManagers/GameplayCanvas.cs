@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,12 +14,26 @@ public class GameplayCanvas : MonoBehaviour
     [SerializeField] private Button _mainMenu;
     [SerializeField] private GameObject _gameMenu;
 
+    [SerializeField] private TMP_Text _gameEndTitle;
+
     [SerializeField] private Image _loadingBackground;
+
+    public void CallGameplayEndMenu(bool isPlayerWin)
+    {
+        _gameMenu.SetActive(true);
+        _resume.gameObject.SetActive(false);
+        _pause.gameObject.SetActive(false);
+
+        _gameEndTitle.gameObject.SetActive(true);
+        _gameEndTitle.text = isPlayerWin ? "You Win!!!" : "GAME OVER.";
+    }
 
     private void CallPause()
     {
         _gameMenu.SetActive(true);
+        _resume.gameObject.SetActive(true);
         _pause.gameObject.SetActive(false);
+        _gameEndTitle.gameObject.SetActive(false);
 
         PausePressed?.Invoke();
     }
