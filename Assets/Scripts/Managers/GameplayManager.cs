@@ -5,6 +5,12 @@ using Zenject;
 public class GameplayManager : MonoBehaviour
 {
     public UnityAction<bool> GameplayEnded;
+    public UnityAction<float> PlayerHealthChanged;
+
+    public int[] PlayerHealthInfo
+    {
+        get { return new int[] { _playerHealthComponent.CurrentHealth, _playerHealthComponent.MaxHealth, _playerHealthComponent.HealthPerSec }; }
+    }
 
     [SerializeField] private int _pickUpItemColdown;
 
@@ -35,18 +41,17 @@ public class GameplayManager : MonoBehaviour
         _pickUpItemsManager = pickUpItemsManager;
         _enemiesManager = enemiesManager;
     }
-
-    private void Awake()
-    {
-        _playerController = _player.GetComponent<PlayerController>();
-        _playerHealthComponent = _player.GetComponent<HealthComponent>();
-    }
-
     public void StartGameplay()
     {
         _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
         _timersManager.SetTimer(_timeToSpawnFirstEnemy, SpawnRandomEnemy);
         SpawnRandomPickUpItem();
+    }
+
+    private void Awake()
+    {
+        _playerController = _player.GetComponent<PlayerController>();
+        _playerHealthComponent = _playerController.HealthComponent;
     }
 
     private void SpawnRandomEnemy()
@@ -102,9 +107,15 @@ public class GameplayManager : MonoBehaviour
         GameplayEnded?.Invoke(false);
     }
 
+    private void ChangeHealthValue(float value)
+    {
+        PlayerHealthChanged?.Invoke(value);
+    }
+
     private void OnEnable()
     {
         _playerController.CharacterDead += PlayerDead;
+        _playerHealthComponent.HealthRationChanged += ChangeHealthValue;
 
         _enemiesManager.AllEnemiesDead += AllEnemyDead;
 
@@ -114,6 +125,7 @@ public class GameplayManager : MonoBehaviour
     private void OnDisable()
     {
         _playerController.CharacterDead -= PlayerDead;
+        _playerHealthComponent.HealthRationChanged -= ChangeHealthValue;
 
         _enemiesManager.AllEnemiesDead -= AllEnemyDead;
 

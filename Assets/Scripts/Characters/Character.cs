@@ -7,7 +7,7 @@ public class Character : MonoBehaviour, ITakingDamage
 {
     public UnityAction<Character> CharacterDead;
 
-    protected HealthComponent HealthComponent { get { return _healthComponent = _healthComponent ?? GetComponent<HealthComponent>(); } }
+    public HealthComponent HealthComponent { get { return _healthComponent = _healthComponent ?? GetComponent<HealthComponent>(); } }
     private HealthComponent _healthComponent;
 
     public virtual void TakeDamage(float damage)
