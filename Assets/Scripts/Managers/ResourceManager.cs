@@ -6,6 +6,28 @@ using UnityEngine.Events;
 public class ResourceManager : MonoBehaviour
 {
     public UnityAction<float> PlayerHealed;
+    public UnityAction<float> ManaRatioChanged;
+    public int EnemiesKilled
+    {
+        get { return _enemiesKilled; }
+    }
+    public int CurrentPlayerLevel
+    {
+        get { return _currentLevel; }
+    }
+    public int Gold
+    {
+        get { return _gold; }
+    }
+    public int CurrentMana
+    {
+        get { return (int)_currentMana; }
+    }
+    public int ManaToNextLevel
+    {
+        get { return (int)_manaToNextLevel; }
+    }
+    
 
     [SerializeField] private float _manaToNextLevel;
 
@@ -17,7 +39,7 @@ public class ResourceManager : MonoBehaviour
 
     [SerializeField] private int _currentLevel = 1;
     [SerializeField] private float _currentMana;
-    [SerializeField] private float _gold;
+    [SerializeField] private int _gold;
 
     public void PlayerPickUpItem(PickUpItem pickUpItem)
     {
@@ -57,11 +79,13 @@ public class ResourceManager : MonoBehaviour
 
             Debug.Log($"LEVEL UP! Current level: {_currentLevel}");
         }
+
+        ManaRatioChanged?.Invoke(_currentMana/_manaToNextLevel);
     }
 
     private void AddGold(float gold)
     {
-        _gold += gold;
+        _gold += (int)gold;
     }
 
     private void AddHeal(float heal)

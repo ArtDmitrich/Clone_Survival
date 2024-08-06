@@ -6,18 +6,30 @@ using UnityEngine.Events;
 public class HealthComponent : MonoBehaviour
 {
     public UnityAction CharacterDied;
-    public UnityAction CharacterResurrected;
+    public UnityAction<float> HealthRationChanged;
 
-    public int MaxHealth;
-    public int AutoHealPerSec;
+    public int MaxHealth
+    {
+        get { return _maxHealth; }
+    }
+    public int CurrentHealth
+    {
+        get { return (int)_currentHealth; }
+    }
+    public int HealthPerSec
+    {
+        get { return _autoHealPerSec; }
+    }
 
-    private bool _issAutoHealing;
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private int _autoHealPerSec;
+
+    private bool _isAutoHealing;
     private float _currentHealth;
 
     public void Init()
     {
-        _currentHealth = MaxHealth;
-        CharacterResurrected?.Invoke();
+        _currentHealth = _maxHealth;
     }
 
     public void GetDamage(float value)
@@ -39,24 +51,31 @@ public class HealthComponent : MonoBehaviour
             _currentHealth = 0;
             CharacterDied?.Invoke();
         }
-        else if (_currentHealth > MaxHealth)
+        else if (_currentHealth > _maxHealth)
         {
-            _currentHealth = MaxHealth;
+            _currentHealth = _maxHealth;
         }
+
+        HealthRationChanged?.Invoke(_currentHealth/_maxHealth);
     }
 
     private void CheckAutoHealing()
     {
-        _issAutoHealing = _currentHealth < MaxHealth;
+        if (_autoHealPerSec == 0)
+        {
+            _isAutoHealing = false;
+        }
+
+        _isAutoHealing = _currentHealth < _maxHealth;
     }
 
     private void Update()
     {
         CheckAutoHealing();
 
-        if (_issAutoHealing)
+        if (_isAutoHealing)
         {
-            ChangeCurrentHealth(AutoHealPerSec * Time.deltaTime);
+            ChangeCurrentHealth(_autoHealPerSec * Time.deltaTime);
         }
     }
 }

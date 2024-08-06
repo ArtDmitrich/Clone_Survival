@@ -27,9 +27,12 @@ public class EnemiesManager : ItemManager
         _resourceManager = resourceManager;
     }
 
-    public void SpawnRandomEnemy(Transform player)
+    public void SpawnRandomEnemies(Transform player, int enemyCount)
     {
-        AddEnemy(_enemiesSpawnChances.GetRandomItemName(), player);
+        for (int i = 0; i < enemyCount; i++)
+        {
+            AddEnemy(_enemiesSpawnChances.GetRandomItemName(), player);
+        }
     }
 
     public void StartNextSpecialWave(Transform player)
