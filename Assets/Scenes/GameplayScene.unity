@@ -2167,6 +2167,10 @@ PrefabInstance:
       propertyPath: _maxDistanceToShoot
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5552326529695348387, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
+      propertyPath: _bulletSpeedMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6451,7 +6455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1667901755717565724, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2004868862566535575, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_Layer
@@ -6543,7 +6547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054068595916594835, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8415323509828245843, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_Layer
@@ -6551,7 +6555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415323509828245843, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8589109977295547010, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_Layer
@@ -6563,7 +6567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8967341419498585233, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067086398211477076, guid: 712f99e7485b4a844aa1d953d0d7ce89, type: 3}
       propertyPath: m_Layer

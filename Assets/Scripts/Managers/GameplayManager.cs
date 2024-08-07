@@ -65,7 +65,8 @@ public class GameplayManager : MonoBehaviour
         _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
         _enemiesManager.StartNextSpecialWave(_player);
 
-        _enemySpawnCount++;
+        //some logic for adding enemy spawn count
+        _enemySpawnCount += _enemySpawnCount;
         _spawnEnemyColdown -= _decreaseEnemyColdownValue;
 
         if (_spawnEnemyColdown <= _minSpawnEnemyColdown)

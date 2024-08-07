@@ -172,13 +172,13 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _damageValue: 5
+  _damageValue: 20
   _coldownTime: 2
   Target: {fileID: 0}
   _bulletType: 0
   _isPercing: 0
   _maxDistanceToShoot: 15
-  _bulletSpeedMultiplier: 0.4
+  _bulletSpeedMultiplier: 0.3
 --- !u!1 &8439777356615135186
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de7a5a0c858a4cae94b8e39d56dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 30
-  AutoHealPerSec: 0
+  _maxHealth: 50
+  _autoHealPerSec: 0
 --- !u!114 &692352559109708363
 MonoBehaviour:
   m_ObjectHideFlags: 0

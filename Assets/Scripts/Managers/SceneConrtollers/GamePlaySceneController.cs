@@ -55,7 +55,7 @@ public class GamePlaySceneController : MonoBehaviour
 
     private void GameplayEnd(bool isPlayerWin)
     {
-        TransitionToState(PauseState);
+        Pause();
         _gameplayCanvas.CallGameplayEndMenu(isPlayerWin);
     }
 
