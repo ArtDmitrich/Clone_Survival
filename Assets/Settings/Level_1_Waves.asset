@@ -15,12 +15,23 @@ MonoBehaviour:
   WavesDatas:
   - Title: Wave_1
     chunksOfWaves:
-    - EnemyType: 1
+    - EnemyType: 2
       Count: 200
       EnemySpawnColdown: 0.3
-    - EnemyType: 2
-      Count: 50
+    - EnemyType: 1
+      Count: 100
       EnemySpawnColdown: 0.2
+    - EnemyType: 0
+      Count: 30
+      EnemySpawnColdown: 0.5
+  - Title: Wave_2
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 200
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 200
+      EnemySpawnColdown: 0.1
     - EnemyType: 0
       Count: 30
       EnemySpawnColdown: 0.5
