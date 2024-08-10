@@ -10,9 +10,9 @@ public class GameplayManager : MonoBehaviour
     public UnityAction<float> PlayerHealthChanged;
     public UnityAction<List<Upgrade>> PlayeraLevelUpped;
 
-    public float[] PlayerHealthInfo
+    public Vector3 PlayerHealthInfo
     {
-        get { return new float[] { _playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec }; }
+        get { return new Vector3(_playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec); }
     }
 
     [SerializeField] private int _pickUpItemColdown;
@@ -55,15 +55,7 @@ public class GameplayManager : MonoBehaviour
     }
     public void UpgradePlayer(Upgrade upgrade)
     {
-        if (upgrade as CharacterStatsUpgrade)
-        {
-            var statsUpgrade = (CharacterStatsUpgrade)upgrade;
-            statsUpgrade.UpgradeStats(_playerStats);
-        }
-        else if (upgrade as WeaponUpgrade)
-        {
-            //some logic for update weapon
-        }
+        upgrade.Activate(_playerController);
     }
 
     private void Awake()

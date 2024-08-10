@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public abstract class Upgrade: ScriptableObject
 {
     public string Title;
+
+    public abstract void Activate(PlayerController player);
 }

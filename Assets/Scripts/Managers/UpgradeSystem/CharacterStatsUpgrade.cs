@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Updates/CharacterStats", order = 1)]
 public class CharacterStatsUpgrade : Upgrade
 {
     [SerializeField] private float _maxHealth = 0.0f;
@@ -8,8 +9,8 @@ public class CharacterStatsUpgrade : Upgrade
     [SerializeField] private float _movementSpeed = 0.0f;
     [SerializeField] private float _defence = 0.0f;
 
-    public void UpgradeStats(CharacterStats stats)
+    public override void Activate(PlayerController player)
     {
-        stats.AddToStatMultipliers(_maxHealth, _healthPerSec, _damage, _movementSpeed, _defence);
+        player.CharacterStats.AddToStatMultipliers(_maxHealth, _healthPerSec, _damage, _movementSpeed, _defence);
     }
 }

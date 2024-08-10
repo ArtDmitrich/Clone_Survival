@@ -1347,7 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f30b74eff7bbbe4284eff2a0c0d8bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 3
+  _movementSpeed: 1
 --- !u!114 &488464819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   _maxHealthBase: 100
   _healthPerSecBase: 1
   _damageBase: 10
-  _movementSpeedBase: 2
+  _movementSpeedBase: 4
   _defenceBase: 1
 --- !u!1 &504012479
 GameObject:
@@ -3688,11 +3688,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgrades:
-  - {fileID: 5151721092461815668, guid: 23c643da9c2e560469f50be30f892ab9, type: 3}
-  - {fileID: 3533825945553777611, guid: e90a857f1983e8b46bbc99da09a4ddc9, type: 3}
-  - {fileID: 8410496137254061381, guid: 352a5794c46a40240bb9c23e99977e5e, type: 3}
-  - {fileID: 8561244658799500263, guid: 2243a4a36ae65dc4d8094274e9b815a2, type: 3}
-  - {fileID: 526903060143048294, guid: d7cccad527586fe41b546caa27848ce5, type: 3}
+  - {fileID: 11400000, guid: b137a140b89740446bf9c87029f338d5, type: 2}
+  - {fileID: 11400000, guid: 588ddf5699b4bb1468630c673114200b, type: 2}
+  - {fileID: 11400000, guid: a8016ef0a9098f9418e674f8dec2f2a1, type: 2}
+  - {fileID: 11400000, guid: 5307b1a22c3217240b82d22c7e78689a, type: 2}
+  - {fileID: 11400000, guid: 230ce6095fa7f3945bfad7766b2165ee, type: 2}
 --- !u!1 &1211867009
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class GamePlaySceneController : MonoBehaviour
         TransitionToState(PauseState);
         var playerHealthInfo = _gameplayManager.PlayerHealthInfo;
         _gameplayCanvas.SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
-            (int)playerHealthInfo[0], (int)playerHealthInfo[1], playerHealthInfo[2],
+            (int)playerHealthInfo.x, (int)playerHealthInfo.y, playerHealthInfo.z,
             _resourceManager.CurrentMana, _resourceManager.ManaToNextLevel);
     }
 
