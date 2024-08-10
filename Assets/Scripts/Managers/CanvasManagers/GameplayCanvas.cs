@@ -30,11 +30,7 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private Image _loadingBackground;
 
-    [SerializeField] private GameObject _upgradeMenu;
-    [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
-    [SerializeField] private string _upgradeButtonName;
-
-    private List<UpgradeButton> _possibleUpgrades = new List<UpgradeButton>();
+    [SerializeField] private UpgradeMenu _upgradeMenu;
 
     public void SetManaBarValue(float value)
     {
@@ -70,28 +66,15 @@ public class GameplayCanvas : MonoBehaviour
 
     public void CallUpgradeMenu(List<Upgrade> upgrades)
     {
-        _upgradeMenu.SetActive(true);
+        _upgradeMenu.gameObject.SetActive(true);
 
-        for (int i = 0; i < upgrades.Count; i++)
-        {
-            var upgradeButton = _upgradeButtonManager.GetUpgradeButton(_upgradeButtonName);
-            _possibleUpgrades.Add(upgradeButton);
-            upgradeButton.Init(upgrades[i]);
-            upgradeButton.UpgradeSelected += GetSelectedUpgrade;
-        }
+        _upgradeMenu.ActivateUpgradeButtons(upgrades);
     }
 
     private void GetSelectedUpgrade(Upgrade upgrade)
     {
-        for (int i = 0; i < _possibleUpgrades.Count; i++)
-        {
-            _possibleUpgrades[i].UpgradeSelected -= GetSelectedUpgrade;
-        }
-
-        _possibleUpgrades.Clear();
-
         UpgradeSelected?.Invoke(upgrade);
-        _upgradeMenu.SetActive(false);
+        _upgradeMenu.gameObject.SetActive(false);
     }
 
     private void CallPause()
@@ -128,11 +111,15 @@ public class GameplayCanvas : MonoBehaviour
         _pause.onClick.AddListener(CallPause);
         _resume.onClick.AddListener(ResumeGame);
         _mainMenu.onClick.AddListener(BackToMainMenu);
+
+        _upgradeMenu.UpgradeSelected += GetSelectedUpgrade;
     }
     private void OnDisable()
     {
         _pause.onClick.RemoveListener(CallPause);
         _resume.onClick.RemoveListener(ResumeGame);
         _mainMenu.onClick.RemoveListener(BackToMainMenu);
+
+        _upgradeMenu.UpgradeSelected -= GetSelectedUpgrade;
     }
 }
