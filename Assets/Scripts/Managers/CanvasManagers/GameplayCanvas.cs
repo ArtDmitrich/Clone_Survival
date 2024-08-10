@@ -18,12 +18,12 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private TMP_Text _menuTitle;
 
-    [SerializeField] private TMP_Text _enemiesKilledValue;
-    [SerializeField] private TMP_Text _levelValue;
-    [SerializeField] private TMP_Text _goldValue;
-    [SerializeField] private TMP_Text _healthValue;
-    [SerializeField] private TMP_Text _healthPerSecValue;
-    [SerializeField] private TMP_Text _manaValue;
+    [SerializeField] private ItemInfo _enemiesKilled;
+    [SerializeField] private ItemInfo _level;
+    [SerializeField] private ItemInfo _gold;
+    [SerializeField] private ItemInfo _health;
+    [SerializeField] private ItemInfo _healthPerSec;
+    [SerializeField] private ItemInfo _mana;
 
     [SerializeField] private Slider _manaBar;
     [SerializeField] private Slider _healthBar;
@@ -47,12 +47,12 @@ public class GameplayCanvas : MonoBehaviour
 
     public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, float healthPerSec, int currentMana, int manaToNextLevel)
     {
-        _enemiesKilledValue.text = enemiesKilled.ToString();
-        _levelValue.text = level.ToString();
-        _goldValue.text = gold.ToString();
-        _healthValue.text = $"{currentHealth}/{maxHealth}";
-        _healthPerSecValue.text = healthPerSec.ToString();
-        _manaValue.text = $"{currentMana}/{manaToNextLevel}";
+        _enemiesKilled.Value.text = enemiesKilled.ToString();
+        _level.Value.text = level.ToString();
+        _gold.Value.text = gold.ToString();
+        _health.Value.text = $"{currentHealth}/{maxHealth}";
+        _healthPerSec.Value.text = healthPerSec.ToString();
+        _mana.Value.text = $"{currentMana}/{manaToNextLevel}";
     }
 
     public void CallGameplayEndMenu(bool isPlayerWin)
@@ -62,6 +62,10 @@ public class GameplayCanvas : MonoBehaviour
         _pause.gameObject.SetActive(false);
 
         _menuTitle.text = isPlayerWin ? "You Win!!!" : "GAME OVER.";
+
+        _health.gameObject.SetActive(false);
+        _healthPerSec.gameObject.SetActive(false);
+        _mana.gameObject.SetActive(false);
     }
 
     public void CallUpgradeMenu(List<Upgrade> upgrades)
