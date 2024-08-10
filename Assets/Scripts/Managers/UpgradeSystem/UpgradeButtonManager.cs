@@ -12,6 +12,7 @@ public class UpgradeButtonManager : ItemManager
 
         if (upgradeButton != null && upgradeButton.TryGetComponent<PooledItem>(out var pooledItem))
         {
+            upgradeButton.transform.SetParent(transform);
             _items.Add(pooledItem);
         }
 

@@ -75,7 +75,6 @@ public class GameplayCanvas : MonoBehaviour
         for (int i = 0; i < upgrades.Count; i++)
         {
             var upgradeButton = _upgradeButtonManager.GetUpgradeButton(_upgradeButtonName);
-            upgradeButton.transform.SetParent(_upgradeMenu.transform);
             _possibleUpgrades.Add(upgradeButton);
             upgradeButton.Init(upgrades[i]);
             upgradeButton.UpgradeSelected += GetSelectedUpgrade;
