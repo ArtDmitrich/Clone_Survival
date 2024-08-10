@@ -32,6 +32,12 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private UpgradeMenu _upgradeMenu;
 
+    private void Start()
+    {
+        _gameMenu.gameObject.SetActive(false);
+        _upgradeMenu.gameObject.SetActive(false);
+    }
+
     public void SetManaBarValue(float value)
     {
         _manaBar.value = value;
