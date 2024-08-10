@@ -6,8 +6,6 @@ using Zenject;
 
 public class PlayerController : MovableCharacter
 {
-    [SerializeField] private int _damageReduction;
-
     private InputController _input;
 
     [Inject]
@@ -16,16 +14,9 @@ public class PlayerController : MovableCharacter
         _input = inputController;
     }
 
-    public override void TakeDamage(float damage)
-    {
-        damage -= _damageReduction;
-
-        base.TakeDamage(damage);
-    }
-
     private void StartMovement(Vector2 direction)
     {
-        Movement?.StartMovement(direction);
+        Movement?.StartMovement(direction * CharacterStats.MovementSpeed);
     }
 
     private void StopMovement()

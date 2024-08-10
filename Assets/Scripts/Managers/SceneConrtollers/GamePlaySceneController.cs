@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +28,7 @@ public class GamePlaySceneController : MonoBehaviour
         TransitionToState(PauseState);
         var playerHealthInfo = _gameplayManager.PlayerHealthInfo;
         _gameplayCanvas.SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
-            playerHealthInfo[0], playerHealthInfo[1], playerHealthInfo[2],
+            (int)playerHealthInfo[0], (int)playerHealthInfo[1], playerHealthInfo[2],
             _resourceManager.CurrentMana, _resourceManager.ManaToNextLevel);
     }
 
@@ -69,6 +70,17 @@ public class GamePlaySceneController : MonoBehaviour
         _gameplayCanvas.SetHealthBarValue(value);
     }
 
+    private void StartPlayerUpdating(List<Upgrade> possibleUpgrades)
+    {
+        TransitionToState(PauseState);
+        _gameplayCanvas.CallUpgradeMenu(possibleUpgrades);
+    }
+
+    private void GetSelectedUpgrade(Upgrade upgrade)
+    {
+        TransitionToState(PlayState);
+        _gameplayManager.UpgradePlayer(upgrade);
+    }
 
     private void Start()
     {
@@ -80,10 +92,12 @@ public class GamePlaySceneController : MonoBehaviour
     {
         _gameplayManager.GameplayEnded += GameplayEnd;
         _gameplayManager.PlayerHealthChanged += ChangeHealthValue;
+        _gameplayManager.PlayeraLevelUpped += StartPlayerUpdating;
 
         _gameplayCanvas.PausePressed += Pause;
         _gameplayCanvas.ResumePressed += Resume;
         _gameplayCanvas.MainMenuPressed += BackToMainMenu;
+        _gameplayCanvas.UpgradeSelected += GetSelectedUpgrade;
 
         _resourceManager.ManaRatioChanged += ChangeManaValue;
     }
@@ -92,10 +106,12 @@ public class GamePlaySceneController : MonoBehaviour
     {
         _gameplayManager.GameplayEnded -= GameplayEnd;
         _gameplayManager.PlayerHealthChanged -= ChangeHealthValue;
+        _gameplayManager.PlayeraLevelUpped -= StartPlayerUpdating;
 
         _gameplayCanvas.PausePressed -= Pause;
         _gameplayCanvas.ResumePressed -= Resume;
         _gameplayCanvas.MainMenuPressed -= BackToMainMenu;
+        _gameplayCanvas.UpgradeSelected -= GetSelectedUpgrade;
 
         _resourceManager.ManaRatioChanged -= ChangeManaValue;
     }

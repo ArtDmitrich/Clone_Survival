@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 5503705716371418299}
   - component: {fileID: 6978279545573526446}
   - component: {fileID: 692352559109708363}
+  - component: {fileID: -8593254528825928267}
   m_Layer: 3
   m_Name: ImmovableEnemy
   m_TagString: Untagged
@@ -303,8 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de7a5a0c858a4cae94b8e39d56dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 50
-  _autoHealPerSec: 0
 --- !u!114 &692352559109708363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,3 +316,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e16289c0f89bf40a152ebcf8d93862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8593254528825928267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439777356615135186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00309e71ecdfcb3438d3f73b8266b5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maxHealthBase: 50
+  _healthPerSecBase: 0
+  _damageBase: 15
+  _movementSpeedBase: 0
+  _defenceBase: 0

@@ -8,28 +8,14 @@ public class HealthComponent : MonoBehaviour
     public UnityAction CharacterDied;
     public UnityAction<float> HealthRationChanged;
 
-    public int MaxHealth
-    {
-        get { return _maxHealth; }
-    }
-    public int CurrentHealth
-    {
-        get { return (int)_currentHealth; }
-    }
-    public int HealthPerSec
-    {
-        get { return _autoHealPerSec; }
-    }
-
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _autoHealPerSec;
-
     private bool _isAutoHealing;
-    private float _currentHealth;
 
-    public void Init()
+    private CharacterStats _characterStats;
+
+    public void Init(CharacterStats characterStats)
     {
-        _currentHealth = _maxHealth;
+        _characterStats = characterStats;
+        _characterStats.CurrentHealth = _characterStats.MaxHealth;
     }
 
     public void GetDamage(float value)
@@ -44,38 +30,37 @@ public class HealthComponent : MonoBehaviour
 
     private void ChangeCurrentHealth(float value)
     {
-        _currentHealth += value;
+        _characterStats.CurrentHealth = value;
+        var currentHealth = _characterStats.CurrentHealth;
 
-        if (_currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            _currentHealth = 0;
             CharacterDied?.Invoke();
         }
-        else if (_currentHealth > _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
 
-        HealthRationChanged?.Invoke(_currentHealth/_maxHealth);
+        HealthRationChanged?.Invoke(currentHealth / _characterStats.MaxHealth);
     }
 
-    private void CheckAutoHealing()
+    private void CheckAutoHealing(out float healthPerSec)
     {
-        if (_autoHealPerSec == 0)
+        healthPerSec = _characterStats.HealthPerSec;
+
+        if (healthPerSec <= 0.01f)
         {
             _isAutoHealing = false;
+            return;
         }
 
-        _isAutoHealing = _currentHealth < _maxHealth;
+        _isAutoHealing = _characterStats.CurrentHealth < _characterStats.MaxHealth;
     }
 
     private void Update()
     {
-        CheckAutoHealing();
+        CheckAutoHealing(out var healthPerSec);
 
         if (_isAutoHealing)
         {
-            ChangeCurrentHealth(_autoHealPerSec * Time.deltaTime);
+            ChangeCurrentHealth(healthPerSec * Time.deltaTime);
         }
     }
 }

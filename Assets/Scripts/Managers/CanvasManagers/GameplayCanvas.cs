@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,7 @@ public class GameplayCanvas : MonoBehaviour
     public UnityAction PausePressed;
     public UnityAction ResumePressed;
     public UnityAction MainMenuPressed;
+    public UnityAction<Upgrade> UpgradeSelected;
 
     [SerializeField] private Button _pause;
     [SerializeField] private Button _resume;
@@ -28,6 +30,12 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private Image _loadingBackground;
 
+    [SerializeField] private GameObject _upgradeMenu;
+    [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
+    [SerializeField] private string _upgradeButtonName;
+
+    private List<UpgradeButton> _possibleUpgrades = new List<UpgradeButton>();
+
     public void SetManaBarValue(float value)
     {
         _manaBar.value = value;
@@ -37,7 +45,7 @@ public class GameplayCanvas : MonoBehaviour
         _healthBar.value = value;
     }
 
-    public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, int healthPerSec, int currentMana, int manaToNextLevel)
+    public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, float healthPerSec, int currentMana, int manaToNextLevel)
     {
         _enemiesKilledValue.text = enemiesKilled.ToString();
         _levelValue.text = level.ToString();
@@ -54,6 +62,33 @@ public class GameplayCanvas : MonoBehaviour
         _pause.gameObject.SetActive(false);
 
         _menuTitle.text = isPlayerWin ? "You Win!!!" : "GAME OVER.";
+    }
+
+    public void CallUpgradeMenu(List<Upgrade> upgrades)
+    {
+        _upgradeMenu.SetActive(true);
+
+        for (int i = 0; i < upgrades.Count; i++)
+        {
+            var upgradeButton = _upgradeButtonManager.GetUpgradeButton(_upgradeButtonName);
+            upgradeButton.transform.SetParent(_upgradeMenu.transform);
+            _possibleUpgrades.Add(upgradeButton);
+            upgradeButton.Init(upgrades[i]);
+            upgradeButton.UpgradeSelected += GetSelectedUpgrade;
+        }
+    }
+
+    private void GetSelectedUpgrade(Upgrade upgrade)
+    {
+        for (int i = 0; i < _possibleUpgrades.Count; i++)
+        {
+            _possibleUpgrades[i].UpgradeSelected -= GetSelectedUpgrade;
+        }
+
+        _possibleUpgrades.Clear();
+
+        UpgradeSelected?.Invoke(upgrade);
+        _upgradeMenu.SetActive(false);
     }
 
     private void CallPause()

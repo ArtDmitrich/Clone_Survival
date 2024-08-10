@@ -7,6 +7,7 @@ public class ResourceManager : MonoBehaviour
 {
     public UnityAction<float> PlayerHealed;
     public UnityAction<float> ManaRatioChanged;
+    public UnityAction PlayersLevelUpped;
     public int EnemiesKilled
     {
         get { return _enemiesKilled; }
@@ -78,6 +79,7 @@ public class ResourceManager : MonoBehaviour
             _manaToNextLevel *= (1 + _increaseManaPerLevel);
 
             Debug.Log($"LEVEL UP! Current level: {_currentLevel}");
+            PlayersLevelUpped?.Invoke();
         }
 
         ManaRatioChanged?.Invoke(_currentMana/_manaToNextLevel);
