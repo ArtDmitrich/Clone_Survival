@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,7 @@ public class GameplayCanvas : MonoBehaviour
     public UnityAction PausePressed;
     public UnityAction ResumePressed;
     public UnityAction MainMenuPressed;
+    public UnityAction<Upgrade> UpgradeSelected;
 
     [SerializeField] private Button _pause;
     [SerializeField] private Button _resume;
@@ -28,6 +30,14 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private Image _loadingBackground;
 
+    [SerializeField] private UpgradeMenu _upgradeMenu;
+
+    private void Start()
+    {
+        _gameMenu.gameObject.SetActive(false);
+        _upgradeMenu.gameObject.SetActive(false);
+    }
+
     public void SetManaBarValue(float value)
     {
         _manaBar.value = value;
@@ -37,7 +47,7 @@ public class GameplayCanvas : MonoBehaviour
         _healthBar.value = value;
     }
 
-    public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, int healthPerSec, int currentMana, int manaToNextLevel)
+    public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, float healthPerSec, int currentMana, int manaToNextLevel)
     {
         _enemiesKilled.Value.text = enemiesKilled.ToString();
         _level.Value.text = level.ToString();
@@ -58,6 +68,19 @@ public class GameplayCanvas : MonoBehaviour
         _health.gameObject.SetActive(false);
         _healthPerSec.gameObject.SetActive(false);
         _mana.gameObject.SetActive(false);
+    }
+
+    public void CallUpgradeMenu(List<Upgrade> upgrades)
+    {
+        _upgradeMenu.gameObject.SetActive(true);
+
+        _upgradeMenu.ActivateUpgradeButtons(upgrades);
+    }
+
+    private void GetSelectedUpgrade(Upgrade upgrade)
+    {
+        UpgradeSelected?.Invoke(upgrade);
+        _upgradeMenu.gameObject.SetActive(false);
     }
 
     private void CallPause()
@@ -94,11 +117,15 @@ public class GameplayCanvas : MonoBehaviour
         _pause.onClick.AddListener(CallPause);
         _resume.onClick.AddListener(ResumeGame);
         _mainMenu.onClick.AddListener(BackToMainMenu);
+
+        _upgradeMenu.UpgradeSelected += GetSelectedUpgrade;
     }
     private void OnDisable()
     {
         _pause.onClick.RemoveListener(CallPause);
         _resume.onClick.RemoveListener(ResumeGame);
         _mainMenu.onClick.RemoveListener(BackToMainMenu);
+
+        _upgradeMenu.UpgradeSelected -= GetSelectedUpgrade;
     }
 }

@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: -916009064588135177}
   - component: {fileID: 8476067012017208411}
   - component: {fileID: 8617583145974710909}
+  - component: {fileID: -7729436722099701945}
   m_Layer: 3
   m_Name: PursuerEnemy
   m_TagString: Untagged
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30b0f06fa1e31c419fcbd476dde841c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 8617583145974710909}
   _minDistanceToTarget: 0.2
 --- !u!114 &396970073521715954
 MonoBehaviour:
@@ -281,8 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de7a5a0c858a4cae94b8e39d56dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _autoHealPerSec: 0
 --- !u!114 &8476067012017208411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,8 +307,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca27b70cad5f20449b7bd1715960f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
+  WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _damageValue: 5
-  _coldownTime: 1.5
+  _coldownTime: 1
+  _damageBase: 5
+--- !u!114 &-7729436722099701945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224341723674246092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00309e71ecdfcb3438d3f73b8266b5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maxHealthBase: 15
+  _healthPerSecBase: 0
+  _damageBase: 5
+  _movementSpeedBase: 3
+  _defenceBase: 0

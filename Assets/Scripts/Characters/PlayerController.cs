@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Resources;
 using UnityEngine;
 using Zenject;
 
 public class PlayerController : MovableCharacter
 {
-    [SerializeField] private int _damageReduction;
+    public AttackingSystem AttackingSystem { get { return _attackingSystem; } }
+    [SerializeField] private AttackingSystem _attackingSystem;
 
     private InputController _input;
 
@@ -16,16 +14,9 @@ public class PlayerController : MovableCharacter
         _input = inputController;
     }
 
-    public override void TakeDamage(float damage)
-    {
-        damage -= _damageReduction;
-
-        base.TakeDamage(damage);
-    }
-
     private void StartMovement(Vector2 direction)
     {
-        Movement?.StartMovement(direction);
+        Movement?.StartMovement(direction * CharacterStats.MovementSpeed);
     }
 
     private void StopMovement()
@@ -33,11 +24,26 @@ public class PlayerController : MovableCharacter
         Movement?.StopMovement();
     }
 
+    private void SetAdditionalDamageToAttackingSystem(float additionalDamage)
+    {
+        if (_attackingSystem != null)
+        {
+            _attackingSystem.AdditionalDamage = additionalDamage;
+        }
+    }
+
+    private void Start()
+    {
+        SetAdditionalDamageToAttackingSystem(CharacterStats.Damage);
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
         _input.PlayerMovementStarted += StartMovement;
-        _input.PlayerMovementStoped += StopMovement;        
+        _input.PlayerMovementStoped += StopMovement;
+
+        CharacterStats.DamageChanged += SetAdditionalDamageToAttackingSystem;
     }
 
     protected override void OnDisable()
@@ -45,5 +51,7 @@ public class PlayerController : MovableCharacter
         base.OnDisable();
         _input.PlayerMovementStarted -= StartMovement;
         _input.PlayerMovementStoped -= StopMovement;
+
+        CharacterStats.DamageChanged -= SetAdditionalDamageToAttackingSystem;
     }
 }

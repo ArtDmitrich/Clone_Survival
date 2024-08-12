@@ -151,8 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f938b5377cfa83547a79ef97a6f10568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootingWeaponList:
+  _shootingWeapons:
   - {fileID: 4414669398671900102}
+  _rotatingWeapons: []
   _detectionRadius: 20
   _targetLayer:
     serializedVersion: 2
@@ -169,15 +170,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8266e2d4dcf4e875eb88e72175e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
+  WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _damageValue: 20
   _coldownTime: 2
+  _damageBase: 10
   Target: {fileID: 0}
+  MaxDistanceToShoot: 20
   _bulletType: 0
   _isPercing: 0
-  _maxDistanceToShoot: 15
   _bulletSpeedMultiplier: 0.3
 --- !u!1 &8439777356615135186
 GameObject:
@@ -193,6 +196,7 @@ GameObject:
   - component: {fileID: 5503705716371418299}
   - component: {fileID: 6978279545573526446}
   - component: {fileID: 692352559109708363}
+  - component: {fileID: -8593254528825928267}
   m_Layer: 3
   m_Name: ImmovableEnemy
   m_TagString: Untagged
@@ -291,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa57a7ddc1bdc847a7b443d314871e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackingSystem: {fileID: 8713840069867547713}
 --- !u!114 &6978279545573526446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,8 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de7a5a0c858a4cae94b8e39d56dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 50
-  _autoHealPerSec: 0
 --- !u!114 &692352559109708363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,3 +320,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e16289c0f89bf40a152ebcf8d93862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8593254528825928267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439777356615135186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00309e71ecdfcb3438d3f73b8266b5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maxHealthBase: 50
+  _healthPerSecBase: 0
+  _damageBase: 10
+  _movementSpeedBase: 0
+  _defenceBase: 0

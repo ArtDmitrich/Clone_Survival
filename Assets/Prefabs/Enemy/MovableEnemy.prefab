@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 8410476610169299977}
   - component: {fileID: -1095803139702975105}
   - component: {fileID: 4737232449193853936}
+  - component: {fileID: 7704387250196674753}
   m_Layer: 3
   m_Name: MovableEnemy
   m_TagString: Untagged
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63192ab37cf56346bb32ae310f0cd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 4737232449193853936}
 --- !u!114 &-3986496900045703630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,8 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de7a5a0c858a4cae94b8e39d56dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
-  _autoHealPerSec: 0
 --- !u!114 &-1095803139702975105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,8 +306,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca27b70cad5f20449b7bd1715960f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
+  WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _damageValue: 10
   _coldownTime: 1
+  _damageBase: 5
+--- !u!114 &7704387250196674753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194868772627030331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00309e71ecdfcb3438d3f73b8266b5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maxHealthBase: 25
+  _healthPerSecBase: 0
+  _damageBase: 10
+  _movementSpeedBase: 2
+  _defenceBase: 0

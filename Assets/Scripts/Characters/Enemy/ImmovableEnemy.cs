@@ -6,6 +6,8 @@ using Zenject;
 
 public class ImmovableEnemy : Character
 {
+    [SerializeField] private AttackingSystem _attackingSystem;
+
     private PooledItem PooledItem { get { return _pooledItem = _pooledItem ?? GetComponent<PooledItem>(); } }
     private PooledItem _pooledItem;
 
@@ -13,5 +15,26 @@ public class ImmovableEnemy : Character
     {
         base.Death();
         PooledItem.Release();
+    }
+    private void SetAdditionalDamageToAttackingSystem(float additionalDamage)
+    {
+        if (_attackingSystem != null)
+        {
+            _attackingSystem.AdditionalDamage = additionalDamage;
+        }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        CharacterStats.DamageChanged += SetAdditionalDamageToAttackingSystem;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        CharacterStats.DamageChanged -= SetAdditionalDamageToAttackingSystem;
     }
 }

@@ -7,6 +7,8 @@ public abstract class Enemy : MonoBehaviour, ITakingDamage
 
     private HealthComponent HealthComponent { get {  return _healthComponent = _healthComponent ?? GetComponent<HealthComponent>(); } }
     private HealthComponent _healthComponent;
+    public CharacterStats CharacterStats { get { return _characterStats = _characterStats ?? GetComponent<CharacterStats>(); } }
+    private CharacterStats _characterStats;
     private PooledItem PooledItem { get { return _pooledItem = _pooledItem ?? GetComponent<PooledItem>(); } }
     private PooledItem _pooledItem;
 
@@ -24,7 +26,7 @@ public abstract class Enemy : MonoBehaviour, ITakingDamage
     protected void OnEnable()
     {
         HealthComponent.CharacterDied += Death;
-        HealthComponent.Init();
+        HealthComponent.Init(CharacterStats);
     }
 
     protected void OnDisable()

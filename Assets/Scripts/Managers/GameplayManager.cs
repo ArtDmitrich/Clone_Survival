@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.Events;
 using Zenject;
 
@@ -6,10 +8,11 @@ public class GameplayManager : MonoBehaviour
 {
     public UnityAction<bool> GameplayEnded;
     public UnityAction<float> PlayerHealthChanged;
+    public UnityAction<List<Upgrade>> PlayeraLevelUpped;
 
-    public int[] PlayerHealthInfo
+    public Vector3 PlayerHealthInfo
     {
-        get { return new int[] { _playerHealthComponent.CurrentHealth, _playerHealthComponent.MaxHealth, _playerHealthComponent.HealthPerSec }; }
+        get { return new Vector3(_playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec); }
     }
 
     [SerializeField] private int _pickUpItemColdown;
@@ -29,17 +32,20 @@ public class GameplayManager : MonoBehaviour
     private TimersManager _timersManager;
     private PickUpItemsManager _pickUpItemsManager;
     private EnemiesManager _enemiesManager;
+    private UpgradeSystem _upgradeSystem;
 
     private PlayerController _playerController;
     private HealthComponent _playerHealthComponent;
+    private CharacterStats _playerStats;
 
     [Inject]
-    private void Construct(ResourceManager resourceManager, TimersManager timersManager, PickUpItemsManager pickUpItemsManager, EnemiesManager enemiesManager)
+    private void Construct(ResourceManager resourceManager, TimersManager timersManager, PickUpItemsManager pickUpItemsManager, EnemiesManager enemiesManager, UpgradeSystem upgradeSystem)
     {
         _resourceManager = resourceManager;
         _timersManager = timersManager;
         _pickUpItemsManager = pickUpItemsManager;
         _enemiesManager = enemiesManager;
+        _upgradeSystem = upgradeSystem;
     }
     public void StartGameplay()
     {
@@ -47,10 +53,15 @@ public class GameplayManager : MonoBehaviour
         _timersManager.SetTimer(_timeToSpawnFirstEnemy, SpawnRandomEnemy);
         SpawnRandomPickUpItem();
     }
+    public void UpgradePlayer(Upgrade upgrade)
+    {
+        upgrade.Activate(_playerController);
+    }
 
     private void Awake()
     {
         _playerController = _player.GetComponent<PlayerController>();
+        _playerStats = _playerController.CharacterStats;
         _playerHealthComponent = _playerController.HealthComponent;
     }
 
@@ -113,6 +124,13 @@ public class GameplayManager : MonoBehaviour
         PlayerHealthChanged?.Invoke(value);
     }
 
+    private void PlayerLevelUp()
+    {
+        //TODO: реализовать логиу возвращениия трех случайных улучшений
+        var possibleUpgrades = _upgradeSystem.GetRandomUpgrades(3, _playerController.AttackingSystem);
+        PlayeraLevelUpped?.Invoke(possibleUpgrades);
+    }    
+
     private void OnEnable()
     {
         _playerController.CharacterDead += PlayerDead;
@@ -121,6 +139,7 @@ public class GameplayManager : MonoBehaviour
         _enemiesManager.AllEnemiesDead += AllEnemyDead;
 
         _resourceManager.PlayerHealed += _playerHealthComponent.Heal;
+        _resourceManager.PlayersLevelUpped += PlayerLevelUp;
     }
 
     private void OnDisable()
@@ -131,5 +150,6 @@ public class GameplayManager : MonoBehaviour
         _enemiesManager.AllEnemiesDead -= AllEnemyDead;
 
         _resourceManager.PlayerHealed -= _playerHealthComponent.Heal;
+        _resourceManager.PlayersLevelUpped -= PlayerLevelUp;
     }
 }
