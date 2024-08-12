@@ -9,6 +9,7 @@ public class HealthComponent : MonoBehaviour
     public UnityAction<float> HealthRationChanged;
 
     private bool _isAutoHealing;
+    private bool _isAlive;
 
     private CharacterStats _characterStats;
 
@@ -16,6 +17,7 @@ public class HealthComponent : MonoBehaviour
     {
         _characterStats = characterStats;
         _characterStats.CurrentHealth = _characterStats.MaxHealth;
+        _isAlive = true;
     }
 
     public void GetDamage(float value)
@@ -36,6 +38,7 @@ public class HealthComponent : MonoBehaviour
         if (currentHealth <= 0)
         {
             CharacterDied?.Invoke();
+            _isAlive = false;
         }
 
         HealthRationChanged?.Invoke(currentHealth / _characterStats.MaxHealth);
@@ -56,6 +59,11 @@ public class HealthComponent : MonoBehaviour
 
     private void Update()
     {
+        if (!_isAlive)
+        {
+            return;
+        }
+
         CheckAutoHealing(out var healthPerSec);
 
         if (_isAutoHealing)

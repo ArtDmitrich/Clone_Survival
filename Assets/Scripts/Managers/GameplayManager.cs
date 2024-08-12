@@ -127,7 +127,8 @@ public class GameplayManager : MonoBehaviour
     private void PlayerLevelUp()
     {
         //TODO: реализовать логиу возвращениия трех случайных улучшений
-        PlayeraLevelUpped?.Invoke(new List<Upgrade> { _upgradeSystem.GetUpgrade(0), _upgradeSystem.GetUpgrade(1), _upgradeSystem.GetUpgrade(2) });
+        var possibleUpgrades = _upgradeSystem.GetRandomUpgrades(3, _playerController.AttackingSystem);
+        PlayeraLevelUpped?.Invoke(possibleUpgrades);
     }    
 
     private void OnEnable()

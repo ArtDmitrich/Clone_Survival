@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterStats : MonoBehaviour
 {
+    public UnityAction<float> DamageChanged;
+
     public float CurrentHealth
     {
         set
@@ -60,10 +63,30 @@ public class CharacterStats : MonoBehaviour
 
     public void AddToStatMultipliers(float maxHealth, float healthPerSec, float damage, float movementSpeed, float defence)
     {
-        _maxHealthMultiplier += maxHealth;
-        _healthPerSecMultiplier += healthPerSec;
-        _damageMultiplier += damage;
-        _movementSpeedMultiplier += movementSpeed;
-        _defenceMultiplier += defence;
+        if (maxHealth != 0.0f)
+        {
+            _maxHealthMultiplier += maxHealth;
+        }
+
+        if (healthPerSec != 0.0f)
+        {
+            _healthPerSecMultiplier += healthPerSec;
+        }
+
+        if (damage != 0.0f)
+        {
+            _damageMultiplier += damage;
+            DamageChanged?.Invoke(Damage);
+        }
+
+        if (movementSpeed != 0.0f)
+        {
+            _movementSpeedMultiplier += movementSpeed;
+        }
+
+        if (defence != 0.0f)
+        {
+            _defenceMultiplier += defence;
+        }
     }
 }

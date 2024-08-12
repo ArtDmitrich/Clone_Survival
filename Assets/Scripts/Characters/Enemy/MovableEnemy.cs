@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovableEnemy : MovableCharacter
 {
+    [SerializeField] private MeleeWeapon weapon;
+
     public Transform Target
     {
         get { return _target; }
@@ -30,5 +32,26 @@ public class MovableEnemy : MovableCharacter
     {
         base.Death();
         PooledItem.Release();
+    }
+    private void SetAdditionalDamageToMeleeWeapon(float additionalDamage)
+    {
+        if (weapon != null)
+        {
+            weapon.SetAdditionalDamage(additionalDamage);
+        }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        CharacterStats.DamageChanged += SetAdditionalDamageToMeleeWeapon;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        CharacterStats.DamageChanged -= SetAdditionalDamageToMeleeWeapon;
     }
 }

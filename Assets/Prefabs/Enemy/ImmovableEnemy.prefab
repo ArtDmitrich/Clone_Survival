@@ -151,8 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f938b5377cfa83547a79ef97a6f10568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootingWeaponList:
+  _shootingWeapons:
   - {fileID: 4414669398671900102}
+  _rotatingWeapons: []
   _detectionRadius: 20
   _targetLayer:
     serializedVersion: 2
@@ -169,15 +170,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e8266e2d4dcf4e875eb88e72175e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 0
+  WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _damageValue: 20
   _coldownTime: 2
+  _damageBase: 10
   Target: {fileID: 0}
+  MaxDistanceToShoot: 20
   _bulletType: 0
   _isPercing: 0
-  _maxDistanceToShoot: 15
   _bulletSpeedMultiplier: 0.3
 --- !u!1 &8439777356615135186
 GameObject:
@@ -292,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa57a7ddc1bdc847a7b443d314871e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackingSystem: {fileID: 8713840069867547713}
 --- !u!114 &6978279545573526446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +335,6 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealthBase: 50
   _healthPerSecBase: 0
-  _damageBase: 15
+  _damageBase: 10
   _movementSpeedBase: 0
   _defenceBase: 0

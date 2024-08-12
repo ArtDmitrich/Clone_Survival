@@ -8,7 +8,7 @@ public class MeleeWeapon : Weapon
     {
         StartCoroutine(AttackingColdown(_coldownTime));
 
-        target.TakeDamage(_damageValue);
+        target.TakeDamage(DamageValue);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

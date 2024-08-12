@@ -6,10 +6,10 @@ using Zenject;
 public class AutoShootWeapon : Weapon
 {
     public Transform Target;
+    public float MaxDistanceToShoot;
 
     [SerializeField] private BulletType _bulletType;
     [SerializeField] private bool _isPercing;
-    [SerializeField] private float _maxDistanceToShoot;
     [SerializeField] private float _bulletSpeedMultiplier = 1.0f;
 
     private float _sqrMaxDistanceToShoot;
@@ -18,7 +18,7 @@ public class AutoShootWeapon : Weapon
     private void Start()
     {
         _canAttack = true;
-        _sqrMaxDistanceToShoot = _maxDistanceToShoot * _maxDistanceToShoot;
+        _sqrMaxDistanceToShoot = MaxDistanceToShoot * MaxDistanceToShoot;
         _bulletManager = BulletManager.Instance;
     }    
 
@@ -57,7 +57,7 @@ public class AutoShootWeapon : Weapon
 
         if (bullet.gameObject.TryGetComponent<IMovable>(out var movement))
         {
-            bullet.Init(_targetLayer, _damageValue, _isPercing);
+            bullet.Init(_targetLayer, DamageValue, _isPercing);
             bullet.transform.position = transform.position;
 
             movement.StartMovement(direction);

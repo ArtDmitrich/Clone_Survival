@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Updates/CharacterStats", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Upgrades/CharacterStats", order = 1)]
 public class CharacterStatsUpgrade : Upgrade
 {
     [SerializeField] private float _maxHealth = 0.0f;
