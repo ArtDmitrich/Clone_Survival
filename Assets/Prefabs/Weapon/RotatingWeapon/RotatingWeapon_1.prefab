@@ -246,5 +246,6 @@ MonoBehaviour:
     m_Bits: 8
   _coldownTime: 0
   _damageBase: 5
-  _weapons: []
+  _weapons:
+  - {fileID: 1274540956237562384}
   _rotatingSpeed: 100

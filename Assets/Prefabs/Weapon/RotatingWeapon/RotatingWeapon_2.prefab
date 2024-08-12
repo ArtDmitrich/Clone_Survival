@@ -377,7 +377,9 @@ MonoBehaviour:
     m_Bits: 8
   _coldownTime: 0
   _damageBase: 5
-  _weapons: []
+  _weapons:
+  - {fileID: 4171678390997899829}
+  - {fileID: 5108609748644829945}
   _rotatingSpeed: 100
 --- !u!1 &7020972369768632500
 GameObject:
