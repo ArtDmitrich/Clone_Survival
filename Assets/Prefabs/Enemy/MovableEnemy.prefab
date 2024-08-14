@@ -311,7 +311,7 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  _coldownTime: 1
+  _coldownTime: 0.5
   _damageBase: 5
 --- !u!114 &7704387250196674753
 MonoBehaviour:
@@ -329,5 +329,5 @@ MonoBehaviour:
   _maxHealthBase: 25
   _healthPerSecBase: 0
   _damageBase: 10
-  _movementSpeedBase: 2
+  _movementSpeedBase: 5
   _defenceBase: 0

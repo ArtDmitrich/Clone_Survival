@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
     public UnityAction<float> PlayerHealthChanged;
     public UnityAction<List<Upgrade>> PlayeraLevelUpped;
 
+
     public Vector3 PlayerHealthInfo
     {
         get { return new Vector3(_playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec); }
@@ -38,6 +39,8 @@ public class GameplayManager : MonoBehaviour
     private HealthComponent _playerHealthComponent;
     private CharacterStats _playerStats;
 
+    private bool _gameModeIsEndless = true;
+
     [Inject]
     private void Construct(ResourceManager resourceManager, TimersManager timersManager, PickUpItemsManager pickUpItemsManager, EnemiesManager enemiesManager, UpgradeSystem upgradeSystem)
     {
@@ -58,11 +61,10 @@ public class GameplayManager : MonoBehaviour
         upgrade.Activate(_playerController);
     }
 
-    private void Awake()
+    public void SetGameSettings(bool gameModeIsEndless, WaveSettings waveSettings)
     {
-        _playerController = _player.GetComponent<PlayerController>();
-        _playerStats = _playerController.CharacterStats;
-        _playerHealthComponent = _playerController.HealthComponent;
+        _gameModeIsEndless = gameModeIsEndless;
+        _enemiesManager.SetEnemmiesManagerSettings(waveSettings);
     }
 
     private void SpawnRandomEnemy()
@@ -126,10 +128,24 @@ public class GameplayManager : MonoBehaviour
 
     private void PlayerLevelUp()
     {
-        //TODO: реализовать логиу возвращениия трех случайных улучшений
         var possibleUpgrades = _upgradeSystem.GetRandomUpgrades(3, _playerController.AttackingSystem);
         PlayeraLevelUpped?.Invoke(possibleUpgrades);
-    }    
+    }
+
+    private void StopAllSpawners()
+    {
+        if (!_gameModeIsEndless)
+        {
+            _timersManager.RemoveAllTmers();
+        }
+    }
+
+    private void Awake()
+    {
+        _playerController = _player.GetComponent<PlayerController>();
+        _playerStats = _playerController.CharacterStats;
+        _playerHealthComponent = _playerController.HealthComponent;
+    }
 
     private void OnEnable()
     {
@@ -137,6 +153,7 @@ public class GameplayManager : MonoBehaviour
         _playerHealthComponent.HealthRationChanged += ChangeHealthValue;
 
         _enemiesManager.AllEnemiesDead += AllEnemyDead;
+        _enemiesManager.AllSpecialWavesIsOvered += StopAllSpawners;
 
         _resourceManager.PlayerHealed += _playerHealthComponent.Heal;
         _resourceManager.PlayersLevelUpped += PlayerLevelUp;
@@ -148,6 +165,7 @@ public class GameplayManager : MonoBehaviour
         _playerHealthComponent.HealthRationChanged -= ChangeHealthValue;
 
         _enemiesManager.AllEnemiesDead -= AllEnemyDead;
+        _enemiesManager.AllSpecialWavesIsOvered -= StopAllSpawners;
 
         _resourceManager.PlayerHealed -= _playerHealthComponent.Heal;
         _resourceManager.PlayersLevelUpped -= PlayerLevelUp;

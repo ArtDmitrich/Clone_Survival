@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 public class MainMenuCanvas : MonoBehaviour
 {
     public UnityAction StartPressed;
+    public List<LevelSelectingButton> LevelSelectingButtons;
 
     [SerializeField] private Button _start;
     [SerializeField] private Image _loadingBackground;

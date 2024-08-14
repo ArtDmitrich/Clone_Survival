@@ -7,14 +7,15 @@ using Zenject;
 public class EnemiesManager : ItemManager
 {
     public UnityAction AllEnemiesDead;
+    public UnityAction AllSpecialWavesIsOvered;
 
     [Tooltip("The sum of all chances must not exceed 100.")]
     [SerializeField] private ItemsWithChances _enemiesSpawnChances;
 
-    [SerializeField] private WaveSettings _specialWaves;
-
     [SerializeField] private List<Transform> _movableEnemySpots = new List<Transform>();
     [SerializeField] private List<Transform> _immovableEnemySpots = new List<Transform>();
+
+    [SerializeField] private WaveSettings _specialWaves;
 
     private readonly List<Character> _enemies = new List<Character>();
     private int _currentWaveNumber = 0;
@@ -27,6 +28,11 @@ public class EnemiesManager : ItemManager
         _resourceManager = resourceManager;
     }
 
+    public void SetEnemmiesManagerSettings(WaveSettings waveSettings)
+    {
+        _specialWaves = waveSettings;
+    }
+
     public void SpawnRandomEnemies(Transform player, int enemyCount)
     {
         for (int i = 0; i < enemyCount; i++)
@@ -36,12 +42,16 @@ public class EnemiesManager : ItemManager
     }
 
     public void StartNextSpecialWave(Transform player)
-    {           
+    {
         StartCoroutine(StartWave(_specialWaves.WavesDatas[_currentWaveNumber], player));
 
         if (_currentWaveNumber < _specialWaves.WavesDatas.Count - 1)
         {
             _currentWaveNumber++;
+        }
+        else
+        {
+            AllSpecialWavesIsOvered?.Invoke();
         }
     }
 

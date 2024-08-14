@@ -1935,7 +1935,6 @@ MonoBehaviour:
       Chance: 40
     - Key: Immovable
       Chance: 15
-  _specialWaves: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
   _movableEnemySpots:
   - {fileID: 1654454148}
   - {fileID: 1874648180}
@@ -1968,6 +1967,7 @@ MonoBehaviour:
   - {fileID: 1262292854}
   - {fileID: 89426053}
   - {fileID: 1627748878}
+  _specialWaves: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
 --- !u!114 &742629091 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8341998440022026489, guid: 52f72d6fcee5bea40a41dac9f84799d8, type: 3}
@@ -2202,6 +2202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f66dfad91abda747b3d225381d56703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _background: {fileID: 1438486692}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,7 +3634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1851669448}
+  m_Father: {fileID: 2127254489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1201316983
 MonoBehaviour:
@@ -4278,7 +4279,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 30, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5056,7 +5057,6 @@ Transform:
   - {fileID: 1158666743}
   - {fileID: 2120527976}
   - {fileID: 2127254489}
-  - {fileID: 1201316982}
   - {fileID: 2046920628}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5648,6 +5648,7 @@ Transform:
   - {fileID: 547076002}
   - {fileID: 980201005}
   - {fileID: 1506226227}
+  - {fileID: 1201316982}
   m_Father: {fileID: 1851669448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2130150668

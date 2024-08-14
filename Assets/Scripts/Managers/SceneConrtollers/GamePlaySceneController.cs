@@ -4,8 +4,10 @@ using Zenject;
 
 public class GamePlaySceneController : MonoBehaviour
 {
-    public readonly GameplayBaseState PauseState = new PauseState();
-    public readonly GameplayBaseState PlayState = new PlayState();
+    [SerializeField] private SpriteRenderer _background;
+
+    private readonly GameplayBaseState _pauseState = new PauseState();
+    private readonly GameplayBaseState _playState = new PlayState();
 
     private GameplayBaseState _currentState;
 
@@ -13,19 +15,21 @@ public class GamePlaySceneController : MonoBehaviour
     private GameplayCanvas _gameplayCanvas;
     private GameplayManager _gameplayManager;
     private ResourceManager _resourceManager;
+    private GameSettings _gameSettings;
 
     [Inject]
-    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, ResourceManager resourceManager)
+    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, ResourceManager resourceManager, GameSettings gameSettings)
     {
         _sceneLoader = sceneLoader;
         _gameplayCanvas = gameplayCanvas;
         _gameplayManager = gameplayManager;
         _resourceManager = resourceManager;
+        _gameSettings = gameSettings;
     }
 
     private void Pause()
     {
-        TransitionToState(PauseState);
+        TransitionToState(_pauseState);
         var playerHealthInfo = _gameplayManager.PlayerHealthInfo;
         _gameplayCanvas.SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
             (int)playerHealthInfo.x, (int)playerHealthInfo.y, playerHealthInfo.z,
@@ -34,12 +38,12 @@ public class GamePlaySceneController : MonoBehaviour
 
     private void Resume()
     {
-        TransitionToState(PlayState);
+        TransitionToState(_playState);
     }
 
     private void BackToMainMenu()
     {
-        TransitionToState(PlayState);
+        TransitionToState(_playState);
         _sceneLoader.Load(Scenes.MainMenu);
     }
 
@@ -72,19 +76,26 @@ public class GamePlaySceneController : MonoBehaviour
 
     private void StartPlayerUpdating(List<Upgrade> possibleUpgrades)
     {
-        TransitionToState(PauseState);
+        TransitionToState(_pauseState);
         _gameplayCanvas.CallUpgradeMenu(possibleUpgrades);
     }
 
     private void GetSelectedUpgrade(Upgrade upgrade)
     {
-        TransitionToState(PlayState);
+        TransitionToState(_playState);
         _gameplayManager.UpgradePlayer(upgrade);
+    }
+
+    private void Awake()
+    {
+        //TODO: сделать сущность, которая хранит настройки игровой сессии (список волн, задий фон, настройки игрока (купленные за голд в магазине), бесконечный ли режим игры)
+        _background.sprite = _gameSettings.Background;
+        _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves);
     }
 
     private void Start()
     {
-        TransitionToState(PlayState);
+        TransitionToState(_playState);
         _gameplayManager.StartGameplay();
     }
 
