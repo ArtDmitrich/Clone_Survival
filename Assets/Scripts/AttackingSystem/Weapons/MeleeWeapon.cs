@@ -16,6 +16,7 @@ public class MeleeWeapon : Weapon
         if ((_targetLayer & (1 << collision.gameObject.layer)) != 0 && collision.gameObject.TryGetComponent<ITakingDamage>(out var target))
         {
             Attack(target);
+
         }
     }
 
