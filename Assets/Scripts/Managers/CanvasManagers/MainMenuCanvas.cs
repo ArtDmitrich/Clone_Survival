@@ -5,28 +5,54 @@ using UnityEngine.UI;
 
 public class MainMenuCanvas : MonoBehaviour
 {
-    public UnityAction StartPressed;
-    public List<LevelSelectingButton> LevelSelectingButtons;
+    public UnityAction PlayPressed;
 
-    [SerializeField] private Button _start;
+    [SerializeField] private Button _play;
+    [SerializeField] private Button _backToMainMenu;
     [SerializeField] private Image _loadingBackground;
 
-    private void StartGame()
+    [SerializeField] private MainMenuItem _levelSelectionMenu;
+
+    private MainMenuItem _currentOpenedMenu;
+
+    public void ActivateLoadingBackground()
     {
         _loadingBackground.gameObject.SetActive(true);
 
-        StartPressed?.Invoke();
+    }
+
+    private void OpenLevelSelectionMenu()
+    {
+        OpenMenu(_levelSelectionMenu);
+    }
+
+    private void OpenMenu(MainMenuItem item)
+    {
+        _currentOpenedMenu = item;
+        _currentOpenedMenu.gameObject.SetActive(true);
+        _backToMainMenu.gameObject.SetActive(true);
+    }
+
+    private void CloseOpenedMenu()
+    {
+        _currentOpenedMenu.gameObject.SetActive(false);
+        _backToMainMenu?.gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
         _loadingBackground.gameObject.SetActive(false);
+        _backToMainMenu.gameObject.SetActive(false);
 
-        _start.onClick.AddListener(StartGame);
+        _play.onClick.AddListener(OpenLevelSelectionMenu);
+
+        _backToMainMenu.onClick.AddListener(CloseOpenedMenu);
     }
 
     private void OnDisable()
     {
-        _start.onClick.RemoveListener(StartGame);
+        _play.onClick.RemoveListener(OpenLevelSelectionMenu);
+
+        _backToMainMenu.onClick.RemoveListener(CloseOpenedMenu);
     }
 }

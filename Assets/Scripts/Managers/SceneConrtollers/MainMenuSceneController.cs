@@ -5,53 +5,40 @@ using Zenject;
 
 public class MainMenuSceneController : MonoBehaviour
 {
+    [SerializeField] private GameLevelsSettings _gameLevelsSettings;
+
     private SceneLoader _sceneLoader;
     private MainMenuCanvas _mainMenuCanvas;
     private GameSettings _gameSettings;
+    private GameLevelSelector _gameLevelSelector;
 
     [Inject]
-    private void Costruct(SceneLoader sceneLoader, MainMenuCanvas mainMenuCanvas, GameSettings gameSettings)
+    private void Costruct(SceneLoader sceneLoader, MainMenuCanvas mainMenuCanvas, GameSettings gameSettings, GameLevelSelector gameLevelSelector)
     {
         _sceneLoader = sceneLoader;
         _mainMenuCanvas = mainMenuCanvas;
         _gameSettings = gameSettings;
+        _gameLevelSelector = gameLevelSelector;
     }
 
-    private void LoadSelectedLevel(bool gameModeIsEndless, WaveSettings waveSettings, Sprite background)
+    private void LoadSelectedLevel(GameLevelInfo gameLevelInfo, bool gameModeIsEndless)
     {
+        _mainMenuCanvas.ActivateLoadingBackground();
+
         _gameSettings.GameModeIsEndless = gameModeIsEndless;
-        _gameSettings.SpecialWaves = waveSettings;
-        _gameSettings.Background = background;
+        _gameSettings.SpecialWaves = gameLevelInfo.WaveSettings;
+        _gameSettings.Background = gameLevelInfo.Background;
 
-        _sceneLoader.Load(Scenes.Gameplay);
-    }
-
-    private void LoadGamePlayScene()
-    {
         _sceneLoader.Load(Scenes.Gameplay);
     }
 
     private void OnEnable()
     {
-        _mainMenuCanvas.StartPressed += LoadGamePlayScene;
-
-        var levelButtons = _mainMenuCanvas.LevelSelectingButtons;
-
-        for (int i = 0; i < levelButtons.Count; i++)
-        {
-            levelButtons[i].LevelSelected += LoadSelectedLevel;
-        }
+        _gameLevelSelector.GameLevelSelected += LoadSelectedLevel;
     }
 
     private void OnDisable()
     {
-        _mainMenuCanvas.StartPressed -= LoadGamePlayScene;
-
-        var levelButtons = _mainMenuCanvas.LevelSelectingButtons;
-
-        for (int i = 0; i < levelButtons.Count; i++)
-        {
-            levelButtons[i].LevelSelected -= LoadSelectedLevel;
-        }
+        _gameLevelSelector.GameLevelSelected -= LoadSelectedLevel;
     }
 }

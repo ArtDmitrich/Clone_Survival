@@ -4,20 +4,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class LevelSelectingButton : MonoBehaviour
+public class GameModeSelectingButton : MonoBehaviour
 {
-    public UnityAction<bool, WaveSettings, Sprite> LevelSelected;
-    public int Level;
+    public UnityAction<bool> GameModeSelected;
 
     [SerializeField] private bool _gameModeIsEndless;
-    [SerializeField] private WaveSettings _waveSettings;
-    [SerializeField] private Sprite _background;
 
     private Button _levelButton;
 
     private void SelectLevel()
     {
-        LevelSelected?.Invoke(_gameModeIsEndless, _waveSettings, _background);
+        GameModeSelected?.Invoke(_gameModeIsEndless);
     }
 
     private void Awake()

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public static class ListExtension
+public static class List
 {
     public static void Shuffle<T>(this List<T> list)
     {
