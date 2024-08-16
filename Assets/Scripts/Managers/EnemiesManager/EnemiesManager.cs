@@ -15,10 +15,12 @@ public class EnemiesManager : ItemManager
     [SerializeField] private List<Transform> _movableEnemySpots = new List<Transform>();
     [SerializeField] private List<Transform> _immovableEnemySpots = new List<Transform>();
 
-    [SerializeField] private WaveSettings _specialWaves;
+    private WaveSettings _specialWaves;
+    private EnemyUpgradeSettings _enemyUpgradeSettings;
 
     private readonly List<Character> _enemies = new List<Character>();
     private int _currentWaveNumber = 0;
+    private int _currentUpgradeIndex = 0;
 
     private ResourceManager _resourceManager;
 
@@ -28,9 +30,10 @@ public class EnemiesManager : ItemManager
         _resourceManager = resourceManager;
     }
 
-    public void SetEnemmiesManagerSettings(WaveSettings waveSettings)
+    public void SetEnemmiesManagerSettings(WaveSettings waveSettings, EnemyUpgradeSettings enemyUpgradeSettings)
     {
         _specialWaves = waveSettings;
+        _enemyUpgradeSettings = enemyUpgradeSettings;
     }
 
     public void SpawnRandomEnemies(Transform player, int enemyCount)
@@ -61,6 +64,8 @@ public class EnemiesManager : ItemManager
         {
             yield return StartCoroutine(StartChunk(chunk, player));
         }
+
+        _currentUpgradeIndex++;
     }
     private IEnumerator StartChunk(ChunkWaveData chunk, Transform player)
     {
@@ -78,6 +83,8 @@ public class EnemiesManager : ItemManager
 
         if (item != null)
         {
+            UpgradeEnemy(item);
+
             if (item.TryGetComponent<MovableEnemy>(out var movableEnemy))
             {
                 //some logic to variable spot for spawn enemy
@@ -100,12 +107,22 @@ public class EnemiesManager : ItemManager
         }
     }
 
+    private void UpgradeEnemy(Character enemy)
+    {
+        var upgrade = _enemyUpgradeSettings.GetUpgrade(_currentUpgradeIndex);
+        enemy.CharacterStats.AddToStatMultipliers(upgrade.MaxHealth, upgrade.HealthPerSec, upgrade.Damage, upgrade.MovementSpeed, upgrade.Defence);
+
+        //Reset logic because Chracter Init called in OnEnable method
+        enemy.gameObject.SetActive(false);
+        enemy.gameObject.SetActive(true);
+    }
+
     public void RemoveEnemy(Character enemy)
     {
         if (_enemies.Contains(enemy))
         {
             enemy.CharacterDead -= EnemyKilledByPlayer;
-
+            enemy.CharacterStats.ResetStatsMultipliers();
             _enemies.Remove(enemy);
 
             if (_enemies.Count == 0)

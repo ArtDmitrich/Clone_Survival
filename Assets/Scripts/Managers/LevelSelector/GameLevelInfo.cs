@@ -5,8 +5,12 @@ using UnityEngine;
 public struct GameLevelInfo
 {
     public int LevelNumber;
+
     public Sprite Icon;
     public string Info;
-    public WaveSettings WaveSettings;
+
     public Sprite Background;
+
+    public WaveSettings WaveSettings;
+    public EnemyUpgradeSettings EnemyUpgradeSettings;
 }

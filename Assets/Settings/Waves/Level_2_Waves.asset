@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e66e3718856224fbef863b1ae4391b, type: 3}
   m_Name: Level_2_Waves
   m_EditorClassIdentifier: 
+  PickUpItemColdown: 0.8
+  StartSpawnEnemyColdown: 1
+  MinSpawnEnemyColdown: 0.1
+  DecreaseEnemyColdownValue: 0.1
+  StartEnemySpawnCount: 2
+  SpecialWaveColdown: 180
   WavesDatas:
   - Title: Wave1
     chunksOfWaves:

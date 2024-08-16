@@ -31,6 +31,7 @@ public class WeaponUpgrade : Upgrade
 
         return false;
     }
+
     public override void Activate(PlayerController player)
     {
         var weapon = Object.Instantiate(CurrentUpgrade.Prefab);

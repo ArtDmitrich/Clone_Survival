@@ -28,6 +28,7 @@ public class MainMenuSceneController : MonoBehaviour
         _gameSettings.GameModeIsEndless = gameModeIsEndless;
         _gameSettings.SpecialWaves = gameLevelInfo.WaveSettings;
         _gameSettings.Background = gameLevelInfo.Background;
+        _gameSettings.EnemyUpgradeSettings = gameLevelInfo.EnemyUpgradeSettings;
 
         _sceneLoader.Load(Scenes.Gameplay);
     }

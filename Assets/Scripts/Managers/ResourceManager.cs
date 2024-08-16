@@ -78,7 +78,6 @@ public class ResourceManager : MonoBehaviour
             _currentMana = 0;
             _manaToNextLevel *= (1 + _increaseManaPerLevel);
 
-            Debug.Log($"LEVEL UP! Current level: {_currentLevel}");
             PlayersLevelUpped?.Invoke();
         }
 

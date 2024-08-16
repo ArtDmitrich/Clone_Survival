@@ -335,6 +335,6 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealthBase: 50
   _healthPerSecBase: 0
-  _damageBase: 10
+  _damageBase: 5
   _movementSpeedBase: 0
   _defenceBase: 0

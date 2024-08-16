@@ -10,24 +10,23 @@ public class GameplayManager : MonoBehaviour
     public UnityAction<float> PlayerHealthChanged;
     public UnityAction<List<Upgrade>> PlayeraLevelUpped;
 
-
     public Vector3 PlayerHealthInfo
     {
         get { return new Vector3(_playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec); }
     }
 
-    [SerializeField] private int _pickUpItemColdown;
-
     [SerializeField] private Transform _player;
     [SerializeField] private int _playerLives;
-
     [SerializeField] private float _timeToSpawnFirstEnemy;
-    [SerializeField] private float _spawnEnemyColdown;
-    [SerializeField] private float _minSpawnEnemyColdown;
-    [SerializeField] private float _specialWaveColdown;
 
-    [SerializeField] private float _decreaseEnemyColdownValue;
-    [SerializeField] private int _enemySpawnCount;
+    private float _pickUpItemColdown;
+
+    private float _spawnEnemyColdown;
+    private float _minSpawnEnemyColdown;
+    private float _specialWaveColdown;
+    private float _decreaseEnemyColdownValue;
+    private int _enemySpawnCount;
+    private bool _gameModeIsEndless;
 
     private ResourceManager _resourceManager;
     private TimersManager _timersManager;
@@ -38,8 +37,6 @@ public class GameplayManager : MonoBehaviour
     private PlayerController _playerController;
     private HealthComponent _playerHealthComponent;
     private CharacterStats _playerStats;
-
-    private bool _gameModeIsEndless = true;
 
     [Inject]
     private void Construct(ResourceManager resourceManager, TimersManager timersManager, PickUpItemsManager pickUpItemsManager, EnemiesManager enemiesManager, UpgradeSystem upgradeSystem)
@@ -61,10 +58,19 @@ public class GameplayManager : MonoBehaviour
         upgrade.Activate(_playerController);
     }
 
-    public void SetGameSettings(bool gameModeIsEndless, WaveSettings waveSettings)
+    public void SetGameSettings(bool gameModeIsEndless, WaveSettings waveSettings, EnemyUpgradeSettings enemyUpgradeSettings)
     {
         _gameModeIsEndless = gameModeIsEndless;
-        _enemiesManager.SetEnemmiesManagerSettings(waveSettings);
+
+        _spawnEnemyColdown = waveSettings.StartSpawnEnemyColdown;
+        _minSpawnEnemyColdown = waveSettings.MinSpawnEnemyColdown;
+        _specialWaveColdown = waveSettings.SpecialWaveColdown;
+        _decreaseEnemyColdownValue = waveSettings.DecreaseEnemyColdownValue;
+        _enemySpawnCount = waveSettings.StartEnemySpawnCount;
+        _pickUpItemColdown = waveSettings.PickUpItemColdown;
+
+        _enemiesManager.SetEnemmiesManagerSettings(waveSettings, enemyUpgradeSettings);
+
     }
 
     private void SpawnRandomEnemy()
@@ -107,17 +113,19 @@ public class GameplayManager : MonoBehaviour
         {
             PlayerLose();
         }
+        else
+        {
+            //TODO: player respawn logic
+        }
     }
 
     private void PlayerWin()
     {
-        Debug.LogWarning("PlayerWin!!!");
         GameplayEnded?.Invoke(true);
     }
 
     private void PlayerLose()
     {
-        Debug.LogWarning("GAME OVER.");
         GameplayEnded?.Invoke(false);
     }
 

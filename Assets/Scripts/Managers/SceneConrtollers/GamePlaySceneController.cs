@@ -88,9 +88,8 @@ public class GamePlaySceneController : MonoBehaviour
 
     private void Awake()
     {
-        //TODO: сделать сущность, которая хранит настройки игровой сессии (список волн, задий фон, настройки игрока (купленные за голд в магазине), бесконечный ли режим игры)
         _background.sprite = _gameSettings.Background;
-        _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves);
+        _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves, _gameSettings.EnemyUpgradeSettings);
     }
 
     private void Start()

@@ -16,10 +16,12 @@ MonoBehaviour:
   - LevelNumber: 1
     Icon: {fileID: 1540749360, guid: afe37f2738bd97c42a2a583d4954bb55, type: 3}
     Info: Starting level. Contain5 waves
-    WaveSettings: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
     Background: {fileID: 21300000, guid: 5c983ff44ec99454ea7e8f25bcd3becf, type: 3}
+    WaveSettings: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
+    EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
   - LevelNumber: 2
     Icon: {fileID: -2041826067, guid: b972a33cf788c5b40ab34ab70d4ca190, type: 3}
     Info: Second level. Contain5 waves
-    WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
     Background: {fileID: 21300000, guid: a8bcb299b6be0c04786091541f1ddeac, type: 3}
+    WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
+    EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}

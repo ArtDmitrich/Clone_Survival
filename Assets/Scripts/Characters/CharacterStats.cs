@@ -89,4 +89,13 @@ public class CharacterStats : MonoBehaviour
             _defenceMultiplier += defence;
         }
     }
+
+    public void ResetStatsMultipliers()
+    {
+        _maxHealthMultiplier = 1.0f;
+        _healthPerSecMultiplier = 1.0f;
+        _damageMultiplier = 1.0f;
+        _movementSpeedMultiplier = 1.0f;
+        _defenceMultiplier = 1.0f;
+    }
 }
