@@ -65,6 +65,7 @@ public class GameplayCanvas : MonoBehaviour
         _gameMenu.SetActive(true);
         _resume.gameObject.SetActive(false);
         _pause.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(false);
 
         _menuTitle.text = isPlayerWin ? "You Win!!!" : "GAME OVER.";
 
@@ -76,6 +77,7 @@ public class GameplayCanvas : MonoBehaviour
     public void CallUpgradeMenu(List<Upgrade> upgrades)
     {
         _upgradeMenu.gameObject.SetActive(true);
+        _joystick.gameObject.SetActive(false);
 
         _upgradeMenu.ActivateUpgradeButtons(upgrades);
     }
