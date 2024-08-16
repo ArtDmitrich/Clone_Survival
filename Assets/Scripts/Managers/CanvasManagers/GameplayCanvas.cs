@@ -86,6 +86,7 @@ public class GameplayCanvas : MonoBehaviour
     {
         UpgradeSelected?.Invoke(upgrade);
         _upgradeMenu.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(true);
     }
 
     private void CallPause()
