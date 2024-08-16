@@ -32,10 +32,13 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private UpgradeMenu _upgradeMenu;
 
+    [SerializeField] private GameObject _joystick;
+
     private void Start()
     {
         _gameMenu.gameObject.SetActive(false);
         _upgradeMenu.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(true);
     }
 
     public void SetManaBarValue(float value)
@@ -62,6 +65,7 @@ public class GameplayCanvas : MonoBehaviour
         _gameMenu.SetActive(true);
         _resume.gameObject.SetActive(false);
         _pause.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(false);
 
         _menuTitle.text = isPlayerWin ? "You Win!!!" : "GAME OVER.";
 
@@ -73,6 +77,7 @@ public class GameplayCanvas : MonoBehaviour
     public void CallUpgradeMenu(List<Upgrade> upgrades)
     {
         _upgradeMenu.gameObject.SetActive(true);
+        _joystick.gameObject.SetActive(false);
 
         _upgradeMenu.ActivateUpgradeButtons(upgrades);
     }
@@ -88,6 +93,7 @@ public class GameplayCanvas : MonoBehaviour
         _gameMenu.SetActive(true);
         _resume.gameObject.SetActive(true);
         _pause.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(false);
 
         _menuTitle.text = "Menu";
 
@@ -98,6 +104,7 @@ public class GameplayCanvas : MonoBehaviour
     {
         _gameMenu.SetActive(false);
         _pause.gameObject.SetActive(true);
+        _joystick.gameObject.SetActive(true);
 
         ResumePressed?.Invoke();
     }
