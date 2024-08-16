@@ -125,32 +125,15 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "4bcb1bf0-aa2b-44e1-a4a4-ab8ec304c0b2",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "eb78cb78-b050-4361-8a08-a07f03435f37",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "cbff5fab-a02e-4d4a-a7e8-513f33c4cc65",
-                    "path": "",
+                    "id": "40de8fc5-64ea-4e6a-aff2-c59637a6d403",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
