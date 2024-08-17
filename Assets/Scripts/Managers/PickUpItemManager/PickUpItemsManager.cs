@@ -50,11 +50,14 @@ public class PickUpItemsManager : ItemManager
         return new Vector2(centerPos.x + offsetX, centerPos.y + offsetY);
     }
 
-    private void ItemPickedUp(PickUpItem pickUpItem)
+    private void ItemPickedUp(PickUpItem pickUpItem, bool isPlayerPickedUp)
     {
         pickUpItem.ItemPickedUp -= ItemPickedUp;
         _pickUpItems.Remove(pickUpItem);
 
-        _resourceManager.PlayerPickUpItem(pickUpItem);
+        if(isPlayerPickedUp)
+        {
+            _resourceManager.PlayerPickUpItem(pickUpItem);
+        }
     }
 }

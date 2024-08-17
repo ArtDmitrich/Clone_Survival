@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class GamePlaySceneController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _background;
+    [SerializeField] private SpriteRenderer _sceneBackground;
 
     private readonly GameplayBaseState _pauseState = new PauseState();
     private readonly GameplayBaseState _playState = new PlayState();
@@ -14,28 +13,20 @@ public class GamePlaySceneController : MonoBehaviour
     private SceneLoader _sceneLoader;
     private GameplayCanvas _gameplayCanvas;
     private GameplayManager _gameplayManager;
-    private ResourceManager _resourceManager;
     private GameSettings _gameSettings;
-    private TimersManager _timersManager;
 
     [Inject]
-    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, ResourceManager resourceManager, GameSettings gameSettings, TimersManager timersManager)
+    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, GameSettings gameSettings)
     {
         _sceneLoader = sceneLoader;
         _gameplayCanvas = gameplayCanvas;
         _gameplayManager = gameplayManager;
-        _resourceManager = resourceManager;
         _gameSettings = gameSettings;
-        _timersManager = timersManager;
     }
 
     private void Pause()
     {
         TransitionToState(_pauseState);
-        var playerHealthInfo = _gameplayManager.PlayerHealthInfo;
-        _gameplayCanvas.SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
-            (int)playerHealthInfo.x, (int)playerHealthInfo.y, playerHealthInfo.z,
-            _resourceManager.CurrentMana, _resourceManager.ManaToNextLevel);
     }
 
     private void Resume()
@@ -60,80 +51,26 @@ public class GamePlaySceneController : MonoBehaviour
         _currentState.EnterState(this);
     }
 
-    private void GameplayEnd(bool isPlayerWin)
-    {
-        Pause();
-        _gameplayCanvas.CallGameplayEndMenu(isPlayerWin);
-
-        _timersManager.RemoveAllStopwatches();
-    }
-
-    private void ChangeManaValue(float value)
-    {
-        _gameplayCanvas.SetManaBarValue(value);
-    }
-
-    private void ChangeHealthValue(float value)
-    {
-        _gameplayCanvas.SetHealthBarValue(value);
-    }
-
-    private void StartPlayerUpdating(List<Upgrade> possibleUpgrades)
-    {
-        TransitionToState(_pauseState);
-        _gameplayCanvas.CallUpgradeMenu(possibleUpgrades);
-    }
-
-    private void GetSelectedUpgrade(Upgrade upgrade)
-    {
-        TransitionToState(_playState);
-        _gameplayManager.UpgradePlayer(upgrade);
-    }
-
-    private void SetStopwatchTime(int minutes, int seconds)
-    {
-        _gameplayCanvas.SetStopwatckTime(minutes, seconds);
-    }
-
-    private void Awake()
-    {
-        _background.sprite = _gameSettings.Background;
-        _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves, _gameSettings.EnemyUpgradeSettings);
-    }
-
     private void Start()
     {
+        _sceneBackground.sprite = _gameSettings.Background;
+        _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves, _gameSettings.EnemyUpgradeSettings);
+
         TransitionToState(_playState);
         _gameplayManager.StartGameplay();
-
-        _timersManager.SetStopwatch(SetStopwatchTime);
     }
 
     private void OnEnable()
     {
-        _gameplayManager.GameplayEnded += GameplayEnd;
-        _gameplayManager.PlayerHealthChanged += ChangeHealthValue;
-        _gameplayManager.PlayeraLevelUpped += StartPlayerUpdating;
-
-        _gameplayCanvas.PausePressed += Pause;
-        _gameplayCanvas.ResumePressed += Resume;
+        _gameplayCanvas.Paused += Pause;
+        _gameplayCanvas.Resumed += Resume;
         _gameplayCanvas.MainMenuPressed += BackToMainMenu;
-        _gameplayCanvas.UpgradeSelected += GetSelectedUpgrade;
-
-        _resourceManager.ManaRatioChanged += ChangeManaValue;
     }
 
     private void OnDisable()
     {
-        _gameplayManager.GameplayEnded -= GameplayEnd;
-        _gameplayManager.PlayerHealthChanged -= ChangeHealthValue;
-        _gameplayManager.PlayeraLevelUpped -= StartPlayerUpdating;
-
-        _gameplayCanvas.PausePressed -= Pause;
-        _gameplayCanvas.ResumePressed -= Resume;
+        _gameplayCanvas.Paused -= Pause;
+        _gameplayCanvas.Resumed -= Resume;
         _gameplayCanvas.MainMenuPressed -= BackToMainMenu;
-        _gameplayCanvas.UpgradeSelected -= GetSelectedUpgrade;
-
-        _resourceManager.ManaRatioChanged -= ChangeManaValue;
     }
 }

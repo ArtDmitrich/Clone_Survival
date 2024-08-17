@@ -98,6 +98,9 @@ MonoBehaviour:
     Gold: 0
     Heal: 50
     Mana: 0
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1421157713070420905
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,7 +17,6 @@ public class MainMenuCanvas : MonoBehaviour
     public void ActivateLoadingBackground()
     {
         _loadingBackground.gameObject.SetActive(true);
-
     }
 
     private void OpenLevelSelectionMenu()

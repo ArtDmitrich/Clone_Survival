@@ -204,3 +204,6 @@ MonoBehaviour:
     Gold: 100
     Heal: 0
     Mana: 0
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 64

@@ -7,11 +7,13 @@ public class PlayerController : MovableCharacter
     [SerializeField] private AttackingSystem _attackingSystem;
 
     private InputController _input;
+    private ResourceManager _resourceManager;
 
     [Inject]
-    private void Construct(InputController inputController)
+    private void Construct(InputController inputController, ResourceManager resourceManager)
     {
         _input = inputController;
+        _resourceManager = resourceManager;
     }
 
     private void StartMovement(Vector2 direction)
@@ -44,6 +46,8 @@ public class PlayerController : MovableCharacter
         _input.PlayerMovementStoped += StopMovement;
 
         CharacterStats.DamageChanged += SetAdditionalDamageToAttackingSystem;
+
+        _resourceManager.PlayerHealed += HealthComponent.Heal;
     }
 
     protected override void OnDisable()
@@ -53,5 +57,6 @@ public class PlayerController : MovableCharacter
         _input.PlayerMovementStoped -= StopMovement;
 
         CharacterStats.DamageChanged -= SetAdditionalDamageToAttackingSystem;
+        _resourceManager.PlayerHealed -= HealthComponent.Heal;
     }
 }
