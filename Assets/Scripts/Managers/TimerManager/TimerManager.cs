@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimersManager : MonoBehaviour
 {
     private readonly List<CustomTimer> _timers = new List<CustomTimer>();
+    private readonly List<CustomStopwatch> _stopwatches = new List<CustomStopwatch>();
 
     public void SetTimer(float time, Action CallBack)
     {
@@ -21,16 +22,50 @@ public class TimersManager : MonoBehaviour
         _timers.Add(timer);
     }
 
-    public void RemoveAllTmers()
+    public void RemoveAllTimers()
     {
+        for (int i = 0; i < _timers.Count; i++)
+        {
+            _timers[i].RemoveSubscribers();
+        }
+
         _timers.Clear();
+    }
+
+    public void SetStopwatch(Action<int, int> CallBack)
+    {
+        var stopwatch = new CustomStopwatch();
+        stopwatch.TimeChanged += CallBack;
+
+        _stopwatches.Add(stopwatch);
+    }
+
+    public void RemoveAllStopwatches()
+    {
+        for (int i = 0; i < _stopwatches.Count; i++)
+        {
+            _stopwatches[i].RemoveSubscribers();
+        }
+
+        _stopwatches.Clear();
     }
 
     private void Update()
     {
-        for (int i = 0; i < _timers.Count; i++)
+        if (_timers.Count != 0)
         {
-            _timers[i].Tick(Time.deltaTime);
+            for (int i = 0; i < _timers.Count; i++)
+            {
+                _timers[i].Tick(Time.deltaTime);
+            }
+        }
+
+        if (_stopwatches.Count != 0)
+        {
+            for (int i = 0; i < _stopwatches.Count; i++)
+            {
+                _stopwatches[i].Tick(Time.deltaTime);
+            }
         }
     }
 }

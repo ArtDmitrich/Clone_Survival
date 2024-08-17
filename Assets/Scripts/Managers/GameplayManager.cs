@@ -144,7 +144,7 @@ public class GameplayManager : MonoBehaviour
     {
         if (!_gameModeIsEndless)
         {
-            _timersManager.RemoveAllTmers();
+            _timersManager.RemoveAllTimers();
         }
     }
 

@@ -16,15 +16,17 @@ public class GamePlaySceneController : MonoBehaviour
     private GameplayManager _gameplayManager;
     private ResourceManager _resourceManager;
     private GameSettings _gameSettings;
+    private TimersManager _timersManager;
 
     [Inject]
-    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, ResourceManager resourceManager, GameSettings gameSettings)
+    private void Construct(SceneLoader sceneLoader, GameplayCanvas gameplayCanvas, GameplayManager gameplayManager, ResourceManager resourceManager, GameSettings gameSettings, TimersManager timersManager)
     {
         _sceneLoader = sceneLoader;
         _gameplayCanvas = gameplayCanvas;
         _gameplayManager = gameplayManager;
         _resourceManager = resourceManager;
         _gameSettings = gameSettings;
+        _timersManager = timersManager;
     }
 
     private void Pause()
@@ -62,6 +64,8 @@ public class GamePlaySceneController : MonoBehaviour
     {
         Pause();
         _gameplayCanvas.CallGameplayEndMenu(isPlayerWin);
+
+        _timersManager.RemoveAllStopwatches();
     }
 
     private void ChangeManaValue(float value)
@@ -86,6 +90,11 @@ public class GamePlaySceneController : MonoBehaviour
         _gameplayManager.UpgradePlayer(upgrade);
     }
 
+    private void SetStopwatchTime(int minutes, int seconds)
+    {
+        _gameplayCanvas.SetStopwatckTime(minutes, seconds);
+    }
+
     private void Awake()
     {
         _background.sprite = _gameSettings.Background;
@@ -96,6 +105,8 @@ public class GamePlaySceneController : MonoBehaviour
     {
         TransitionToState(_playState);
         _gameplayManager.StartGameplay();
+
+        _timersManager.SetStopwatch(SetStopwatchTime);
     }
 
     private void OnEnable()

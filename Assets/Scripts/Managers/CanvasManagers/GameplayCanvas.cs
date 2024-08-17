@@ -33,6 +33,7 @@ public class GameplayCanvas : MonoBehaviour
     [SerializeField] private UpgradeMenu _upgradeMenu;
 
     [SerializeField] private GameObject _joystick;
+    [SerializeField] private StopwatchItem _stopwatch;
 
     private void Start()
     {
@@ -80,6 +81,11 @@ public class GameplayCanvas : MonoBehaviour
         _joystick.gameObject.SetActive(false);
 
         _upgradeMenu.ActivateUpgradeButtons(upgrades);
+    }
+
+    public void SetStopwatckTime(int minute,  int second)
+    {
+        _stopwatch.SetTime(minute, second);
     }
 
     private void GetSelectedUpgrade(Upgrade upgrade)
