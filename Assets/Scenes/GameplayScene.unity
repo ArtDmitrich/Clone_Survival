@@ -1250,7 +1250,7 @@ Transform:
   m_GameObject: {fileID: 488464813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -54.2, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4992,6 +4992,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 173799685573153528, guid: 0e954abcc6fb3e743b85e8d27c4fb93d, type: 3}
   m_PrefabInstance: {fileID: 346533539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1773307037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773307039}
+  - component: {fileID: 1773307038}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1773307038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773307037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff6c85bc3062984abc1c231b69ce47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnerSettings: {fileID: 11400000, guid: 9dab53d36e3c53b458e6cb1525ae9b02, type: 2}
+  _poolPrewarming: 0
+  _startPoolSize: 5
+--- !u!4 &1773307039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773307037}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -30.596888, y: 11.21122, z: -0.6977739}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2120527976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815275100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,8 +5933,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 713066561}
-  - {fileID: 1170807913}
   - {fileID: 1068090694}
+  - {fileID: 1170807913}
+  - {fileID: 1773307039}
   m_Father: {fileID: 1851669448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2127254488

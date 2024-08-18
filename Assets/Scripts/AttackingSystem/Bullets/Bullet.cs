@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] protected BulletType _type;
+
     protected float _damageValue;
-    private LayerMask _targetLayer;
+    protected LayerMask _targetLayer;
     private bool _isPiercing;
 
     private PooledItem PooledItem { get { return _pooledItem = _pooledItem ?? GetComponent<PooledItem>(); } }
