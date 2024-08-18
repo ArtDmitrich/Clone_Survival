@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,7 +17,7 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
-    private void SelectUpdate(Upgrade upgrade)
+    private void SelectUpgrade(Upgrade upgrade)
     {
         UpgradeSelected?.Invoke(upgrade);
 
@@ -33,7 +31,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         for (int i = 0; i < upgradeButtons.Count; i++)
         {
-            upgradeButtons[i].UpgradeSelected += SelectUpdate;
+            upgradeButtons[i].UpgradeSelected += SelectUpgrade;
         }
     }
 
@@ -41,7 +39,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         for (int i = 0; i < upgradeButtons.Count; i++)
         {
-            upgradeButtons[i].UpgradeSelected -= SelectUpdate;
+            upgradeButtons[i].UpgradeSelected -= SelectUpgrade;
         }
     }
 }

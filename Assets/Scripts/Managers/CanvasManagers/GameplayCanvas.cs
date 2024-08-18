@@ -1,15 +1,14 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 public class GameplayCanvas : MonoBehaviour
 {
-    public UnityAction PausePressed;
-    public UnityAction ResumePressed;
+    public UnityAction Paused;
+    public UnityAction Resumed;
     public UnityAction MainMenuPressed;
-    public UnityAction<Upgrade> UpgradeSelected;
 
     [SerializeField] private Button _pause;
     [SerializeField] private Button _resume;
@@ -30,39 +29,67 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] private Image _loadingBackground;
 
-    [SerializeField] private UpgradeMenu _upgradeMenu;
 
     [SerializeField] private GameObject _joystick;
     [SerializeField] private StopwatchItem _stopwatch;
+
+    [SerializeField] private UpgradeMenu _upgradeMenu;
+
+    private GameplayManager _gameplayManager;
+    private ResourceManager _resourceManager;
+    private TimersManager _timersManager;
+    private UpgradeSystem _upgradeSystem;
+
+    private HealthComponent _playerHealthComponent;
+    private CharacterStats _playerStats;
+
+    [Inject]
+    private void Construct(PlayerController playerController, GameplayManager gameplayManager, ResourceManager resourceManager, TimersManager timersManager, UpgradeSystem upgradeSystem)
+    {
+        _playerHealthComponent = playerController.HealthComponent;
+        _playerStats = playerController.CharacterStats;
+
+        _gameplayManager = gameplayManager;
+        _resourceManager = resourceManager;
+        _timersManager = timersManager;
+        _upgradeSystem = upgradeSystem;
+    }
 
     private void Start()
     {
         _gameMenu.gameObject.SetActive(false);
         _upgradeMenu.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(true);
+
+        _timersManager.SetStopwatch(SetStopwatchTime);
     }
 
-    public void SetManaBarValue(float value)
+    private void SetManaBarValue(float value)
     {
         _manaBar.value = value;
     }
-    public void SetHealthBarValue(float value)
+
+    private void SetHealthBarValue(float value)
     {
         _healthBar.value = value;
     }
 
-    public void SetInfoValues(int enemiesKilled, int level, int gold, int currentHealth, int maxHealth, float healthPerSec, int currentMana, int manaToNextLevel)
+    private void SetInfoValues(int enemiesKilled, int level, int gold, float currentHealth, float maxHealth, float healthPerSec, int currentMana, int manaToNextLevel)
     {
         _enemiesKilled.Value.text = enemiesKilled.ToString();
         _level.Value.text = level.ToString();
         _gold.Value.text = gold.ToString();
-        _health.Value.text = $"{currentHealth}/{maxHealth}";
+        _health.Value.text = $"{currentHealth:0}/{maxHealth:0}";
         _healthPerSec.Value.text = healthPerSec.ToString();
         _mana.Value.text = $"{currentMana}/{manaToNextLevel}";
     }
 
-    public void CallGameplayEndMenu(bool isPlayerWin)
+    private void CallGameplayEndMenu(bool isPlayerWin)
     {
+        SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
+            _playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec,
+            _resourceManager.CurrentMana, _resourceManager.ManaToNextLevel);
+
         _gameMenu.SetActive(true);
         _resume.gameObject.SetActive(false);
         _pause.gameObject.SetActive(false);
@@ -73,47 +100,47 @@ public class GameplayCanvas : MonoBehaviour
         _health.gameObject.SetActive(false);
         _healthPerSec.gameObject.SetActive(false);
         _mana.gameObject.SetActive(false);
+
+        _timersManager.RemoveAllStopwatches();
+        Paused?.Invoke();
     }
 
-    public void CallUpgradeMenu(List<Upgrade> upgrades)
-    {
-        _upgradeMenu.gameObject.SetActive(true);
-        _joystick.gameObject.SetActive(false);
-
-        _upgradeMenu.ActivateUpgradeButtons(upgrades);
-    }
-
-    public void SetStopwatckTime(int minute,  int second)
+    private void SetStopwatchTime(int minute,  int second)
     {
         _stopwatch.SetTime(minute, second);
     }
 
-    private void GetSelectedUpgrade(Upgrade upgrade)
+    private void CallUpgradeMenu()
     {
-        UpgradeSelected?.Invoke(upgrade);
-        _upgradeMenu.gameObject.SetActive(false);
-        _joystick.gameObject.SetActive(true);
+        _upgradeMenu.gameObject.SetActive(true);
+        _joystick.gameObject.SetActive(false);
+
+        Paused?.Invoke();
     }
 
     private void CallPause()
     {
+        SetInfoValues(_resourceManager.EnemiesKilled, _resourceManager.CurrentPlayerLevel, _resourceManager.Gold,
+            _playerStats.CurrentHealth, _playerStats.MaxHealth, _playerStats.HealthPerSec,
+            _resourceManager.CurrentMana, _resourceManager.ManaToNextLevel);
+
         _gameMenu.SetActive(true);
-        _resume.gameObject.SetActive(true);
         _pause.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(false);
 
         _menuTitle.text = "Menu";
 
-        PausePressed?.Invoke();
+        Paused?.Invoke();
     }
 
     private void ResumeGame()
     {
         _gameMenu.SetActive(false);
+        _upgradeMenu.gameObject.SetActive(false);
         _pause.gameObject.SetActive(true);
         _joystick.gameObject.SetActive(true);
 
-        ResumePressed?.Invoke();
+        Resumed?.Invoke();
     }
 
     private void BackToMainMenu()
@@ -132,7 +159,14 @@ public class GameplayCanvas : MonoBehaviour
         _resume.onClick.AddListener(ResumeGame);
         _mainMenu.onClick.AddListener(BackToMainMenu);
 
-        _upgradeMenu.UpgradeSelected += GetSelectedUpgrade;
+        _gameplayManager.GameplayEnded += CallGameplayEndMenu;
+
+        _upgradeSystem.UpgradingStarted += CallUpgradeMenu;
+        _upgradeSystem.UpgradingFinished += ResumeGame;
+
+        _resourceManager.ManaRatioChanged += SetManaBarValue;
+
+        _playerHealthComponent.HealthRationChanged += SetHealthBarValue;
     }
     private void OnDisable()
     {
@@ -140,6 +174,13 @@ public class GameplayCanvas : MonoBehaviour
         _resume.onClick.RemoveListener(ResumeGame);
         _mainMenu.onClick.RemoveListener(BackToMainMenu);
 
-        _upgradeMenu.UpgradeSelected -= GetSelectedUpgrade;
+        _gameplayManager.GameplayEnded -= CallGameplayEndMenu;
+
+        _upgradeSystem.UpgradingStarted -= CallUpgradeMenu;
+        _upgradeSystem.UpgradingFinished -= ResumeGame;
+
+        _resourceManager.ManaRatioChanged -= SetManaBarValue;
+
+        _playerHealthComponent.HealthRationChanged -= SetHealthBarValue;
     }
 }

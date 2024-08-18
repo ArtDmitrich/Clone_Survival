@@ -1,14 +1,44 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
 
 public class UpgradeSystem : MonoBehaviour
 {
+    public UnityAction UpgradingStarted;
+    public UnityAction UpgradingFinished;
+
     [SerializeField] private List<CharacterStatsUpgrade> _charaterStatsUpgrades = new List<CharacterStatsUpgrade>();
     [SerializeField] private List<WeaponUpgrade> _weaponUpgrades = new List<WeaponUpgrade>();
 
-    public List<Upgrade> GetRandomUpgrades(int count, AttackingSystem attackingSystem)
+    private UpgradeMenu _upgradeMenu;
+    private PlayerController _playerController;
+
+    [Inject]
+    private void Construct(UpgradeMenu upgradeMenu)
+    {
+        _upgradeMenu = upgradeMenu;
+    }
+
+    public void StartUpgrade(int possibleUpgradesCount, PlayerController playerController)
+    {
+        UpgradingStarted?.Invoke();
+
+        _playerController = playerController;
+
+        var upgrades = GetRandomUpgrades(possibleUpgradesCount, _playerController.AttackingSystem);
+        _upgradeMenu.ActivateUpgradeButtons(upgrades);
+    }
+
+    private void FinishUpgrade(Upgrade upgrade)
+    {
+        upgrade.Activate(_playerController);
+
+        UpgradingFinished?.Invoke();
+    }
+
+    private List<Upgrade> GetRandomUpgrades(int count, AttackingSystem attackingSystem)
     {
         UpdateWeaponUpgrades(attackingSystem);
 
@@ -43,5 +73,15 @@ public class UpgradeSystem : MonoBehaviour
         {
             _weaponUpgrades.Remove(listToDelete[i]);
         }
+    }
+
+    private void OnEnable()
+    {
+        _upgradeMenu.UpgradeSelected += FinishUpgrade;
+    }
+
+    private void OnDisable()
+    {
+        _upgradeMenu.UpgradeSelected -= FinishUpgrade;
     }
 }

@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231fc47dfd84f9e469e77e442019c29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 488464814}
   _inputController: {fileID: 980201006}
   _resourceManager: {fileID: 1506226228}
   _timersManager: {fileID: 390186661}
@@ -1142,6 +1143,7 @@ MonoBehaviour:
   _gameplayCanvas: {fileID: 986894654}
   _gameplayManager: {fileID: 547076003}
   _upgradeSystem: {fileID: 1201316983}
+  _upgradeMenu: {fileID: 1215368108}
 --- !u!1 &488464813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,9 +1684,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afebd084fff01942b93fc57d3c01f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 488464817}
   _playerLives: 1
   _timeToSpawnFirstEnemy: 2
+  _possibleUpgradesCount: 3
 --- !u!1 &645997920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,11 +2073,11 @@ MonoBehaviour:
   _enemiesSpawnChances:
     ItemDropChances:
     - Key: Movable
-      Chance: 45
+      Chance: 50
     - Key: Pursuer
-      Chance: 40
+      Chance: 45
     - Key: Immovable
-      Chance: 15
+      Chance: 5
   _movableEnemySpots:
   - {fileID: 1654454148}
   - {fileID: 1874648180}
@@ -2326,7 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f66dfad91abda747b3d225381d56703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _background: {fileID: 1438486692}
+  _sceneBackground: {fileID: 1438486692}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,9 +2511,9 @@ MonoBehaviour:
   _manaBar: {fileID: 75301100}
   _healthBar: {fileID: 711482046}
   _loadingBackground: {fileID: 1665767274}
-  _upgradeMenu: {fileID: 1215368108}
   _joystick: {fileID: 1466522813}
   _stopwatch: {fileID: 1447483597}
+  _upgradeMenu: {fileID: 1215368108}
 --- !u!114 &986894655
 MonoBehaviour:
   m_ObjectHideFlags: 0
