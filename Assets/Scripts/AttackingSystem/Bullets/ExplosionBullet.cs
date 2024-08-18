@@ -8,9 +8,6 @@ public class ExplosionBullet : Bullet
 
     protected override void TakeDamage(ITakingDamage target)
     {
-        var impactEffect = EffectsManager.Instance.GetEffect(_type.ToString());
-        impactEffect.transform.position = transform.position;
-
         base.TakeDamage(target);
 
         var colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _targetLayer);

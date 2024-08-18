@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca27b70cad5f20449b7bd1715960f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 0
+  WeaponType: 4
   WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2

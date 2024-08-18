@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: PooledEffects
   m_EditorClassIdentifier: 
   _pooledItems:
-  - Key: Explosion
+  - Key: ExplosionBullet
     Value: {fileID: 4209469959660481016, guid: af152bb4132006c469db8a0e57a0ab45, type: 3}
+  - Key: StandartBullet
+    Value: {fileID: 407712675044774993, guid: 059234bfbe7a05d438ae74ee6b859244, type: 3}
+  - Key: PlayerMeleeWeapon
+    Value: {fileID: 4339680138448084024, guid: aa40965ffa8eff148bc409cfd74f8661, type: 3}
+  - Key: EnemyMeleeWeapon
+    Value: {fileID: 1034604694200453412, guid: 0e912a4284803c649a435b900ca50d6a, type: 3}

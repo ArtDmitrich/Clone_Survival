@@ -19,6 +19,9 @@ public class Bullet : MonoBehaviour
     }
     protected virtual void TakeDamage(ITakingDamage target)
     {
+        var impactEffect = EffectsManager.Instance.GetEffect(_type.ToString());
+        impactEffect.transform.position = transform.position;
+
         target.TakeDamage(_damageValue);
     }
 

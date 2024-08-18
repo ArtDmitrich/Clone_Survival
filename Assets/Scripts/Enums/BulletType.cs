@@ -1,5 +1,5 @@
 public enum BulletType
 {
-    Standart,
-    Explosion
+    StandartBullet,
+    ExplosionBullet
 }

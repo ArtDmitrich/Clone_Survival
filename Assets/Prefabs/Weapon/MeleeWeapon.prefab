@@ -134,13 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca27b70cad5f20449b7bd1715960f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 2
+  WeaponType: 3
   WeaponLevel: 0
   _targetLayer:
     serializedVersion: 2
     m_Bits: 8
-  _damageValue: 5
   _coldownTime: 0.5
+  _damageBase: 0
 --- !u!95 &3349217869442152607
 Animator:
   serializedVersion: 5

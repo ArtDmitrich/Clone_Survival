@@ -2,5 +2,7 @@ public enum WeaponType
 {
     StandartShooter,
     ExplosionShooter,
-    RotatingMeleeWeapon
+    RotatingMeleeWeapon,
+    PlayerMeleeWeapon,
+    EnemyMeleeWeapon
 }
