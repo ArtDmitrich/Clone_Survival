@@ -16,15 +16,16 @@ public class UpgradeSystem : MonoBehaviour
     private PlayerController _playerController;
 
     [Inject]
-    private void Construct(UpgradeMenu upgradeMenu, PlayerController playerController)
+    private void Construct(UpgradeMenu upgradeMenu)
     {
         _upgradeMenu = upgradeMenu;
-        _playerController = playerController;
     }
 
-    public void StartUpgrade(int possibleUpgradesCount)
+    public void StartUpgrade(int possibleUpgradesCount, PlayerController playerController)
     {
         UpgradingStarted?.Invoke();
+
+        _playerController = playerController;
 
         var upgrades = GetRandomUpgrades(possibleUpgradesCount, _playerController.AttackingSystem);
         _upgradeMenu.ActivateUpgradeButtons(upgrades);

@@ -126,7 +126,7 @@ public class GameplayManager : MonoBehaviour
 
     private void PlayerLevelUp()
     {
-        _upgradeSystem.StartUpgrade(_possibleUpgradesCount);
+        _upgradeSystem.StartUpgrade(_possibleUpgradesCount, _playerController);
     }
 
     private void OnEnable()
