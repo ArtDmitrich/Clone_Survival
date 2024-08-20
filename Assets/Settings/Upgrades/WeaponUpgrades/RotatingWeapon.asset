@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d47ebeb7f105b4cb125d47e848e664, type: 3}
   m_Name: RotatingWeapon
   m_EditorClassIdentifier: 
-  Title: 'Upgrade satellites: increase rotating speed'
+  Title: 'Upgrade satellites: +2 satellites'
   WeaponType: 2
   CurrentUpgrade:
-    Title: 'Upgrade satellites: increase rotating speed'
-    Level: 6
-    Prefab: {fileID: 5591055865512651533, guid: 02a57cd683fbf0546afa47523f9ec9bf, type: 3}
+    Title: 'Upgrade satellites: +2 satellites'
+    Level: 7
+    Prefab: {fileID: 1534878963602017383, guid: d16c42e090dbc7a4eae58e14ecabb5b6, type: 3}
   _upgradesInfo:
   - Title: Add satellie
     Level: 1
@@ -34,9 +34,9 @@ MonoBehaviour:
   - Title: 'Upgrade satellites: increase rotating speed'
     Level: 5
     Prefab: {fileID: 3027952477684082297, guid: a21ce92e2de92714890089d8d3bbccc3, type: 3}
-  - Title: 'Upgrade satellites: increase rotating speed'
+  - Title: 'Upgrade satellites: +2 satellites'
     Level: 6
     Prefab: {fileID: 5591055865512651533, guid: 02a57cd683fbf0546afa47523f9ec9bf, type: 3}
-  - Title: 'Upgrade satellites: +2 satellites and increase rotating speed'
+  - Title: 'Upgrade satellites: +2 satellites'
     Level: 7
-    Prefab: {fileID: 5591055865512651533, guid: 02a57cd683fbf0546afa47523f9ec9bf, type: 3}
+    Prefab: {fileID: 1534878963602017383, guid: d16c42e090dbc7a4eae58e14ecabb5b6, type: 3}

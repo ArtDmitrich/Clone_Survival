@@ -151,6 +151,14 @@ public class GameplayCanvas : MonoBehaviour
         MainMenuPressed?.Invoke();
     }
 
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            CallPause();
+        }
+    }
+
     private void OnEnable()
     {
         _loadingBackground.gameObject.SetActive(false);

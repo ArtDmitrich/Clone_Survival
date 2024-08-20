@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: PooledBullet
   m_EditorClassIdentifier: 
   _pooledItems:
-  - Key: Standart
+  - Key: StandartBullet
     Value: {fileID: 8654623334416970479, guid: af2bcd0c6cd04af49b68dab07fcd1b4e, type: 3}
-  - Key: Explosion
+  - Key: ExplosionBullet
     Value: {fileID: 3962085717332084591, guid: ba39dcb00a0193b4d87c9b0a4b64bb9d, type: 3}
+  - Key: EnemyBullet
+    Value: {fileID: 8420974873515500734, guid: d554929321c83844fadcf8a6e2865809, type: 3}

@@ -14,14 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - LevelNumber: 1
-    Icon: {fileID: 1540749360, guid: afe37f2738bd97c42a2a583d4954bb55, type: 3}
-    Info: Starting level. Contain5 waves
-    Background: {fileID: 21300000, guid: 5c983ff44ec99454ea7e8f25bcd3becf, type: 3}
+    Icon: {fileID: 21300000, guid: 9c60f317d8a338045ab7a2f8afea5c5a, type: 3}
+    Info: Valley
+    Background: {fileID: 21300000, guid: 709b9c8475ddd1640a4afae97cccd6d4, type: 3}
     WaveSettings: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
     EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
   - LevelNumber: 2
-    Icon: {fileID: -2041826067, guid: b972a33cf788c5b40ab34ab70d4ca190, type: 3}
-    Info: Second level. Contain5 waves
+    Icon: {fileID: 21300000, guid: b890ff21e33fe41418ad14928bf85e12, type: 3}
+    Info: Surroundings of the castle
     Background: {fileID: 21300000, guid: a8bcb299b6be0c04786091541f1ddeac, type: 3}
+    WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
+    EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
+  - LevelNumber: 3
+    Icon: {fileID: 21300000, guid: 4a5b1b2039567924dbf56898b926a9ba, type: 3}
+    Info: Town
+    Background: {fileID: 21300000, guid: 5c983ff44ec99454ea7e8f25bcd3becf, type: 3}
+    WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
+    EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
+  - LevelNumber: 4
+    Icon: {fileID: 21300000, guid: c4d5b0a6bc2f3cd48b326a72245625f2, type: 3}
+    Info: Gate
+    Background: {fileID: 21300000, guid: 452dfaf2d9bd5a643abe367170245e63, type: 3}
+    WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
+    EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
+  - LevelNumber: 5
+    Icon: {fileID: 21300000, guid: fbd85523207c81646bbb89d45051cd87, type: 3}
+    Info: Castle hall
+    Background: {fileID: 21300000, guid: 67b73889db67d414fa212b86843fc764, type: 3}
     WaveSettings: {fileID: 11400000, guid: da4c15cc0b178174184f5975140f8e87, type: 2}
     EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
