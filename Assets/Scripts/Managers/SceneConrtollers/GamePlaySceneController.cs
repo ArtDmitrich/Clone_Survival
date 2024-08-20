@@ -3,7 +3,7 @@ using Zenject;
 
 public class GamePlaySceneController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _sceneBackground;
+    [SerializeField] private LevelBackground _sceneBackground;
 
     private readonly GameplayBaseState _pauseState = new PauseState();
     private readonly GameplayBaseState _playState = new PlayState();
@@ -53,7 +53,7 @@ public class GamePlaySceneController : MonoBehaviour
 
     private void Start()
     {
-        _sceneBackground.sprite = _gameSettings.Background;
+        _sceneBackground.SetBackground(_gameSettings.Background);
         _gameplayManager.SetGameSettings(_gameSettings.GameModeIsEndless, _gameSettings.SpecialWaves, _gameSettings.EnemyUpgradeSettings);
 
         TransitionToState(_playState);
