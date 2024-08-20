@@ -21,3 +21,5 @@ MonoBehaviour:
     Value: {fileID: 4339680138448084024, guid: aa40965ffa8eff148bc409cfd74f8661, type: 3}
   - Key: EnemyMeleeWeapon
     Value: {fileID: 1034604694200453412, guid: 0e912a4284803c649a435b900ca50d6a, type: 3}
+  - Key: EnemyBullet
+    Value: {fileID: 3817623814616226347, guid: 8cf9f0437a9511c4d9a1bff9b0da3074, type: 3}

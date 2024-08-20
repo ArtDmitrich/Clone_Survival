@@ -17,16 +17,16 @@ MonoBehaviour:
   MinSpawnEnemyColdown: 0.1
   DecreaseEnemyColdownValue: 0.1
   StartEnemySpawnCount: 2
-  SpecialWaveColdown: 180
+  SpecialWaveColdown: 10
   WavesDatas:
   - Title: Wave1
     chunksOfWaves:
     - EnemyType: 1
-      Count: 400
-      EnemySpawnColdown: 0.1
+      Count: 1000
+      EnemySpawnColdown: 0.3
     - EnemyType: 2
-      Count: 100
-      EnemySpawnColdown: 0.5
+      Count: 1000
+      EnemySpawnColdown: 0.3
     - EnemyType: 2
       Count: 100
       EnemySpawnColdown: 0.2

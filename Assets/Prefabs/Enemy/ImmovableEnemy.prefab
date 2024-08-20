@@ -179,7 +179,7 @@ MonoBehaviour:
   _damageBase: 10
   Target: {fileID: 0}
   MaxDistanceToShoot: 20
-  _bulletType: 0
+  _bulletType: 2
   _isPercing: 0
   _bulletSpeedMultiplier: 0.3
 --- !u!1 &8439777356615135186

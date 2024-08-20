@@ -27,9 +27,6 @@ MonoBehaviour:
     - EnemyType: 1
       Count: 200
       EnemySpawnColdown: 0.2
-    - EnemyType: 0
-      Count: 10
-      EnemySpawnColdown: 0.5
   - Title: Wave_2
     chunksOfWaves:
     - EnemyType: 2
@@ -39,7 +36,7 @@ MonoBehaviour:
       Count: 300
       EnemySpawnColdown: 0.2
     - EnemyType: 0
-      Count: 10
+      Count: 5
       EnemySpawnColdown: 0.5
   - Title: Wave_3
     chunksOfWaves:
@@ -50,7 +47,7 @@ MonoBehaviour:
       Count: 300
       EnemySpawnColdown: 0.2
     - EnemyType: 0
-      Count: 20
+      Count: 5
       EnemySpawnColdown: 0.5
   - Title: Wave_4
     chunksOfWaves:
@@ -58,13 +55,10 @@ MonoBehaviour:
       Count: 500
       EnemySpawnColdown: 0.1
     - EnemyType: 0
-      Count: 25
+      Count: 10
       EnemySpawnColdown: 0.2
-  - Title: Wave_4
+  - Title: Wave_5
     chunksOfWaves:
     - EnemyType: 2
       Count: 600
       EnemySpawnColdown: 0.1
-    - EnemyType: 0
-      Count: 30
-      EnemySpawnColdown: 0.2
