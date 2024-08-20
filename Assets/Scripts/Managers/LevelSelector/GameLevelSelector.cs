@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,6 +41,7 @@ public class GameLevelSelector : MonoBehaviour
         UdpateSelectorButtonsInteractable();
         SetCurentLevel();
         SetCurrentInfo();
+        UpdateStartGameButtons();
     }
 
     private void UdpateSelectorButtonsInteractable()
@@ -60,6 +59,28 @@ public class GameLevelSelector : MonoBehaviour
         _levelNumber.text = _currentLevel.LevelNumber.ToString();
         _levelIcon.sprite = _currentLevel.Icon;
         _levelInfo.text = _currentLevel.Info;
+    }
+
+    private void UpdateStartGameButtons()
+    {
+        var maxOpennedLvl = PlayerPrefs.GetInt("MaxOpennedLevel", 1);
+        var currentLvl = _currentLevel.LevelNumber;
+
+        if (maxOpennedLvl == currentLvl)
+        {
+            _enterZone.gameObject.SetActive(true);
+            _endlessMode.gameObject.SetActive(false);
+        }
+        else if (maxOpennedLvl < currentLvl)
+        {
+            _enterZone.gameObject.SetActive(false);
+            _endlessMode.gameObject.SetActive(false);
+        }
+        else
+        {
+            _enterZone.gameObject.SetActive(true);
+            _endlessMode.gameObject.SetActive(true);
+        }
     }
 
     private void SelectLevel(bool gameModeIsEndless)

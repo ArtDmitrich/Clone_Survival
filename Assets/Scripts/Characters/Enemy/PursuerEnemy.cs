@@ -23,7 +23,7 @@ public class PursuerEnemy : MovableEnemy
         if (newDirection != _directionToMove)
         {
             _directionToMove = newDirection;
-            Movement.StartMovement(_directionToMove);
+            Movement.StartMovement(_directionToMove * CharacterStats.MovementSpeed);
         }
     }
 

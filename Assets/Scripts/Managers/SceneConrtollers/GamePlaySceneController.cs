@@ -51,6 +51,20 @@ public class GamePlaySceneController : MonoBehaviour
         _currentState.EnterState(this);
     }
 
+    private void UpdateMaxOppenedLevel(bool isPlayerWin)
+    {
+        if (isPlayerWin)
+        {
+            var maxOpennedLvl = PlayerPrefs.GetInt("MaxOpennedLevel", 1);
+
+            if (maxOpennedLvl == _gameSettings.CurrentLevelNumber)
+            {
+                maxOpennedLvl++;
+                PlayerPrefs.SetInt("MaxOpennedLevel", maxOpennedLvl);
+            }
+        }
+    }
+
     private void Start()
     {
         _sceneBackground.SetBackground(_gameSettings.Background);
@@ -65,6 +79,8 @@ public class GamePlaySceneController : MonoBehaviour
         _gameplayCanvas.Paused += Pause;
         _gameplayCanvas.Resumed += Resume;
         _gameplayCanvas.MainMenuPressed += BackToMainMenu;
+
+        _gameplayManager.GameplayEnded += UpdateMaxOppenedLevel;
     }
 
     private void OnDisable()
@@ -72,5 +88,7 @@ public class GamePlaySceneController : MonoBehaviour
         _gameplayCanvas.Paused -= Pause;
         _gameplayCanvas.Resumed -= Resume;
         _gameplayCanvas.MainMenuPressed -= BackToMainMenu;
+
+        _gameplayManager.GameplayEnded -= UpdateMaxOppenedLevel;
     }
 }

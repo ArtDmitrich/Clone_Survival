@@ -5,7 +5,6 @@ using UnityEngine;
 public struct GameLevelInfo
 {
     public int LevelNumber;
-
     public Sprite Icon;
     public string Info;
 

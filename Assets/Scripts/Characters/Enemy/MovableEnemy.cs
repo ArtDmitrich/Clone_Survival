@@ -11,7 +11,7 @@ public class MovableEnemy : MovableCharacter
         {
             _target = value;
             _directionToMove = GetDirectionToMove();
-            Movement.StartMovement(_directionToMove);
+            Movement.StartMovement(_directionToMove * CharacterStats.MovementSpeed);
         }
     }
 

@@ -23,6 +23,7 @@ public class MainMenuSceneController : MonoBehaviour
     {
         _mainMenuCanvas.ActivateLoadingBackground();
 
+        _gameSettings.CurrentLevelNumber = gameLevelInfo.LevelNumber;
         _gameSettings.GameModeIsEndless = gameModeIsEndless;
         _gameSettings.SpecialWaves = gameLevelInfo.WaveSettings;
         _gameSettings.Background = gameLevelInfo.Background;

@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int _possibleUpgradesCount = 3;
 
     private float _pickUpItemColdown;
-
+    private float _survivalTime;
     private float _spawnEnemyColdown;
     private float _minSpawnEnemyColdown;
     private float _specialWaveColdown;
@@ -39,17 +39,11 @@ public class GameplayManager : MonoBehaviour
         _enemiesManager = enemiesManager;
         _upgradeSystem = upgradeSystem;
     }
-    public void StartGameplay()
-    {
-        _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
-        _timersManager.SetTimer(_timeToSpawnFirstEnemy, SpawnRandomEnemy);
-        SpawnRandomPickUpItem();
-    }
 
     public void SetGameSettings(bool gameModeIsEndless, WaveSettings waveSettings, EnemyUpgradeSettings enemyUpgradeSettings)
     {
         _gameModeIsEndless = gameModeIsEndless;
-
+        _survivalTime = waveSettings.SurvivalTime;
         _spawnEnemyColdown = waveSettings.StartSpawnEnemyColdown;
         _minSpawnEnemyColdown = waveSettings.MinSpawnEnemyColdown;
         _specialWaveColdown = waveSettings.SpecialWaveColdown;
@@ -58,6 +52,18 @@ public class GameplayManager : MonoBehaviour
         _pickUpItemColdown = waveSettings.PickUpItemColdown;
 
         _enemiesManager.SetEnemmiesManagerSettings(waveSettings, enemyUpgradeSettings);
+    }
+
+    public void StartGameplay()
+    {
+        _timersManager.SetTimer(_specialWaveColdown, StartNextSpecialWave);
+        _timersManager.SetTimer(_timeToSpawnFirstEnemy, SpawnRandomEnemy);
+        SpawnRandomPickUpItem();
+
+        if (!_gameModeIsEndless)
+        {
+            _timersManager.SetTimer(_survivalTime, PlayerWin);
+        }
     }
 
     private void SpawnRandomEnemy()
@@ -85,19 +91,6 @@ public class GameplayManager : MonoBehaviour
     {
         _timersManager.SetTimer(_pickUpItemColdown, SpawnRandomPickUpItem);
         _pickUpItemsManager.SpawnRandomPickUpItem(_playerController.transform.position);
-    }
-
-    private void StopAllSpawners()
-    {
-        if (!_gameModeIsEndless)
-        {
-            _timersManager.RemoveAllTimers();
-        }
-    }
-
-    private void AllEnemyDead()
-    {
-        PlayerWin();
     }
 
     private void PlayerDead(Character player)
@@ -133,8 +126,7 @@ public class GameplayManager : MonoBehaviour
     {
         _playerController.CharacterDead += PlayerDead;
 
-        _enemiesManager.AllEnemiesDead += AllEnemyDead;
-        _enemiesManager.AllSpecialWavesIsOvered += StopAllSpawners;
+        _enemiesManager.AllEnemiesDead += PlayerWin;
 
         _resourceManager.PlayersLevelUpped += PlayerLevelUp;
     }
@@ -143,8 +135,7 @@ public class GameplayManager : MonoBehaviour
     {
         _playerController.CharacterDead -= PlayerDead;
 
-        _enemiesManager.AllEnemiesDead -= AllEnemyDead;
-        _enemiesManager.AllSpecialWavesIsOvered -= StopAllSpawners;
+        _enemiesManager.AllEnemiesDead -= PlayerWin;
 
         _resourceManager.PlayersLevelUpped -= PlayerLevelUp;
     }

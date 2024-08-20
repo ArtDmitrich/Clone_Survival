@@ -1415,7 +1415,7 @@ MonoBehaviour:
   _maxHealthBase: 100
   _healthPerSecBase: 1
   _damageBase: 5
-  _movementSpeedBase: 4
+  _movementSpeedBase: 5
   _defenceBase: 1
 --- !u!61 &488464821
 BoxCollider2D:
@@ -2399,11 +2399,11 @@ MonoBehaviour:
   _enemiesSpawnChances:
     ItemDropChances:
     - Key: Movable
-      Chance: 50
+      Chance: 55
     - Key: Pursuer
-      Chance: 45
+      Chance: 43
     - Key: Immovable
-      Chance: 5
+      Chance: 2
   _movableEnemySpots:
   - {fileID: 1654454148}
   - {fileID: 1874648180}
@@ -4974,9 +4974,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5599993a0e57b574483971f662651215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manaToNextLevel: 100
-  _increaseManaPerLevel: 0.2
-  _manaForKillingEnemy: 5
+  _manaToNextLevel: 150
+  _increaseManaPerLevel: 0.3
+  _manaForKillingEnemy: 7
   _enemiesKilled: 0
   _currentLevel: 1
   _currentMana: 0

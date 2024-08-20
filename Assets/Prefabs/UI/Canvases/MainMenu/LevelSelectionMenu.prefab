@@ -937,6 +937,26 @@ PrefabInstance:
       propertyPath: m_text
       value: Endless mode
       objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_fontSize
+      value: 59.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.w
+      value: 31.748314
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.x
+      value: 31.748276
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.y
+      value: 33.732536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.z
+      value: 33.73253
+      objectReference: {fileID: 0}
     - target: {fileID: 7272738040580515459, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1172,7 +1192,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
       propertyPath: m_text
-      value: Enter zone
+      value: Enter survival zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_fontSize
+      value: 55.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.w
+      value: 37.701103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.x
+      value: 31.74826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.y
+      value: 35.71683
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957234733367068503, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
+      propertyPath: m_margin.z
+      value: 33.732544
       objectReference: {fileID: 0}
     - target: {fileID: 7272738040580515459, guid: 011071d4693f5bf47b354a1fbef16fb8, type: 3}
       propertyPath: m_Pivot.x

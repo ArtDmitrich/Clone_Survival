@@ -7,7 +7,6 @@ using Zenject;
 public class EnemiesManager : ItemManager
 {
     public UnityAction AllEnemiesDead;
-    public UnityAction AllSpecialWavesIsOvered;
 
     [Tooltip("The sum of all chances must not exceed 100.")]
     [SerializeField] private ItemsWithChances _enemiesSpawnChances;
@@ -51,10 +50,6 @@ public class EnemiesManager : ItemManager
         if (_currentWaveNumber < _specialWaves.WavesDatas.Count - 1)
         {
             _currentWaveNumber++;
-        }
-        else
-        {
-            AllSpecialWavesIsOvered?.Invoke();
         }
     }
 

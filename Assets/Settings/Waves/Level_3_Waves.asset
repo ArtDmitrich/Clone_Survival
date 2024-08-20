@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9e66e3718856224fbef863b1ae4391b, type: 3}
-  m_Name: Level_2_Waves
+  m_Name: Level_3_Waves
   m_EditorClassIdentifier: 
-  SurvivalTime: 600
-  PickUpItemColdown: 0.8
+  SurvivalTime: 900
+  PickUpItemColdown: 0.7
   StartSpawnEnemyColdown: 1
   MinSpawnEnemyColdown: 0.1
   DecreaseEnemyColdownValue: 0.1
-  StartEnemySpawnCount: 2
-  SpecialWaveColdown: 10
+  StartEnemySpawnCount: 3
+  SpecialWaveColdown: 180
   WavesDatas:
   - Title: Wave_1
     chunksOfWaves:
@@ -63,6 +63,17 @@ MonoBehaviour:
   - Title: Wave_3
     chunksOfWaves:
     - EnemyType: 2
+      Count: 75
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 75
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 5
+      EnemySpawnColdown: 0.5
+  - Title: Wave_4
+    chunksOfWaves:
+    - EnemyType: 2
       Count: 100
       EnemySpawnColdown: 0.1
     - EnemyType: 1
@@ -71,3 +82,9 @@ MonoBehaviour:
     - EnemyType: 0
       Count: 10
       EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1

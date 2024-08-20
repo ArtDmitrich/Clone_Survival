@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameSettings
 {
+    public int CurrentLevelNumber;
     public bool GameModeIsEndless;
 
     public WaveSettings SpecialWaves;

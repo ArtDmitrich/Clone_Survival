@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e66e3718856224fbef863b1ae4391b, type: 3}
+  m_Name: Level_5_Waves
+  m_EditorClassIdentifier: 
+  SurvivalTime: 1500
+  PickUpItemColdown: 0.5
+  StartSpawnEnemyColdown: 1
+  MinSpawnEnemyColdown: 0.1
+  DecreaseEnemyColdownValue: 0.1
+  StartEnemySpawnCount: 4
+  SpecialWaveColdown: 180
+  WavesDatas:
+  - Title: Wave_1
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 25
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 25
+      EnemySpawnColdown: 0.1
+    - EnemyType: 2
+      Count: 25
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 25
+      EnemySpawnColdown: 0.1
+    - EnemyType: 2
+      Count: 25
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 25
+      EnemySpawnColdown: 0.1
+  - Title: Wave_2
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 2
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 2
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 50
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 5
+      EnemySpawnColdown: 0.3
+  - Title: Wave_3
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 75
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 75
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 5
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 75
+      EnemySpawnColdown: 0.2
+  - Title: Wave_4
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+  - Title: Wave_5
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+  - Title: Wave_6
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 150
+      EnemySpawnColdown: 0.2
+  - Title: Wave_7
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 200
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 100
+      EnemySpawnColdown: 0.1
+    - EnemyType: 1
+      Count: 200
+      EnemySpawnColdown: 0.1
+    - EnemyType: 0
+      Count: 10
+      EnemySpawnColdown: 0.5
+    - EnemyType: 2
+      Count: 150
+      EnemySpawnColdown: 0.2
+  - Title: Wave_7
+    chunksOfWaves:
+    - EnemyType: 0
+      Count: 35
+      EnemySpawnColdown: 0.5
