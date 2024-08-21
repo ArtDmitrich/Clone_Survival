@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5599993a0e57b574483971f662651215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manaToNextLevel: 150
+  _manaToNextLevel: 100
   _increaseManaPerLevel: 0.3
   _manaForKillingEnemy: 7
   _enemiesKilled: 0
