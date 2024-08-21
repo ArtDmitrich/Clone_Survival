@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
-    public UnityAction<Upgrade> UpgradeSelected;
+    public UnityAction<string> UpgradeSelected;
 
     [SerializeField] private Button _button;
     [SerializeField] private TMP_Text _title;
-    private Upgrade _upgrade;
+    private string _upgradeTitle;
 
-    public void Init(Upgrade upgrade)
+    public void Init(string upgradeTitle)
     {
-        _upgrade = upgrade;
-        _title.text = _upgrade.Title;
+        _upgradeTitle = upgradeTitle;
+        _title.text = _upgradeTitle;
     }
 
     private void SelectUpgrade()
     {
-        UpgradeSelected?.Invoke(_upgrade);
+        UpgradeSelected?.Invoke(_upgradeTitle);
     }
 
     private void OnEnable()

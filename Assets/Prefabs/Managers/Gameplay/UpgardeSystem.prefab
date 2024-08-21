@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &75805419307085336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6450299063677735063}
+  - component: {fileID: 3091739107657339645}
+  m_Layer: 0
+  m_Name: UpgardeSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6450299063677735063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75805419307085336}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 168.4609, y: 295.94028, z: -0.37394243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3091739107657339645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75805419307085336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469425c25deff6941b1beca961f8b970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charaterStatsUpgrades:
+  - {fileID: 11400000, guid: b137a140b89740446bf9c87029f338d5, type: 2}
+  - {fileID: 11400000, guid: 588ddf5699b4bb1468630c673114200b, type: 2}
+  - {fileID: 11400000, guid: a8016ef0a9098f9418e674f8dec2f2a1, type: 2}
+  - {fileID: 11400000, guid: 5307b1a22c3217240b82d22c7e78689a, type: 2}
+  - {fileID: 11400000, guid: 230ce6095fa7f3945bfad7766b2165ee, type: 2}
+  _weaponUpgrades:
+  - WeaponType: 0
+    CurrentUpgrade: {fileID: 0}
+    _weaponUpgrades:
+    - {fileID: 11400000, guid: 2f88ab4dbca386d43b662e4045881314, type: 2}
+    - {fileID: 11400000, guid: fa4769b779641f14495c4085be4c6990, type: 2}
+    - {fileID: 11400000, guid: 9797616f0925c7341aa0c67949afd7d7, type: 2}
+    - {fileID: 11400000, guid: f140924adf1605e41a432154f0320e98, type: 2}
+    - {fileID: 11400000, guid: 30e2deef0b6b132419e9a6f87320711d, type: 2}
+    - {fileID: 11400000, guid: 0dcb46e3aa8a8e24f89074fe94f37603, type: 2}
+    - {fileID: 11400000, guid: d3fc739e6e9776d4d99d311572628c9b, type: 2}
+  - WeaponType: 1
+    CurrentUpgrade: {fileID: 0}
+    _weaponUpgrades:
+    - {fileID: 11400000, guid: 824f123df59794b4dad24bcebab27d82, type: 2}
+    - {fileID: 11400000, guid: 027f9eea913d6e8409ffee52fba8796e, type: 2}
+    - {fileID: 11400000, guid: 64c673fec91755a44868f12f2cecfccb, type: 2}
+    - {fileID: 11400000, guid: b122bf19b887cc44994ff580f8adf15e, type: 2}
+    - {fileID: 11400000, guid: 5ae265ed8e4d4594f84ff7c33c76d49b, type: 2}
+    - {fileID: 11400000, guid: e9dab688d0c367b4ea9cb82d83da78e9, type: 2}
+    - {fileID: 11400000, guid: e7d0cbc462214e5468494ba20358af51, type: 2}
+  - WeaponType: 2
+    CurrentUpgrade: {fileID: 0}
+    _weaponUpgrades:
+    - {fileID: 11400000, guid: f78079e1107a2254ea3ce1f37f698f88, type: 2}
+    - {fileID: 11400000, guid: 2384f765101121143a2a29fe2e440e64, type: 2}
+    - {fileID: 11400000, guid: 4862b3f30a63c08419aff41119d53471, type: 2}
+    - {fileID: 11400000, guid: fb12183f82fce064c91d7473f3cf031a, type: 2}
+    - {fileID: 11400000, guid: 2276c12804cee5e4ea293e56677c22a9, type: 2}
+    - {fileID: 11400000, guid: 7a44adfc3186a7948819b303be85fd85, type: 2}
+    - {fileID: 11400000, guid: ba6ef683154ffee468fd0654607a9a08, type: 2}

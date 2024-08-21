@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d47ebeb7f105b4cb125d47e848e664, type: 3}
+  m_Name: RotatingWeapon 3
+  m_EditorClassIdentifier: 
+  Title: 'Upgrade satellites: increase damage'
+  Level: 3
+  Prefab: {fileID: 6999780938144945577, guid: 4eda1931a5cff1d44a1cce9f238605ae, type: 3}

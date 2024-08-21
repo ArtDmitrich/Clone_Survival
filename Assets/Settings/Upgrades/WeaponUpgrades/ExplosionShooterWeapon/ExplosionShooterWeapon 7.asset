@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d47ebeb7f105b4cb125d47e848e664, type: 3}
+  m_Name: ExplosionShooterWeapon 7
+  m_EditorClassIdentifier: 
+  Title: 'Upgrade cannon: bullet and attack speed'
+  Level: 7
+  Prefab: {fileID: 3250231604623930427, guid: 355f40f01c9edb24ab10953dcf5d5cc8, type: 3}

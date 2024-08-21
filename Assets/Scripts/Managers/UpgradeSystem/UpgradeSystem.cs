@@ -10,7 +10,9 @@ public class UpgradeSystem : MonoBehaviour
     public UnityAction UpgradingFinished;
 
     [SerializeField] private List<CharacterStatsUpgrade> _charaterStatsUpgrades = new List<CharacterStatsUpgrade>();
-    [SerializeField] private List<WeaponUpgrade> _weaponUpgrades = new List<WeaponUpgrade>();
+    [SerializeField] private List<WeaponUpgradesHolder> _weaponUpgrades = new List<WeaponUpgradesHolder>();
+
+    private Dictionary<string, Upgrade> _possibleUpgrades = new Dictionary<string, Upgrade>();
 
     private UpgradeMenu _upgradeMenu;
     private PlayerController _playerController;
@@ -28,14 +30,27 @@ public class UpgradeSystem : MonoBehaviour
         _playerController = playerController;
 
         var upgrades = GetRandomUpgrades(possibleUpgradesCount, _playerController.AttackingSystem);
-        _upgradeMenu.ActivateUpgradeButtons(upgrades);
+
+        var upgradeTitles = new List<string>();
+
+        foreach (var upgrade in upgrades)
+        {
+            var title = upgrade.Title;
+            _possibleUpgrades.Add(title, upgrade);
+            upgradeTitles.Add(title);
+        }
+        
+        _upgradeMenu.ActivateUpgradeButtons(upgradeTitles);
     }
 
-    private void FinishUpgrade(Upgrade upgrade)
+    private void FinishUpgrade(string upgradeTitle)
     {
+        var upgrade = _possibleUpgrades[upgradeTitle];
+
         upgrade.Activate(_playerController);
 
         UpgradingFinished?.Invoke();
+        _possibleUpgrades.Clear();
     }
 
     private List<Upgrade> GetRandomUpgrades(int count, AttackingSystem attackingSystem)
@@ -44,7 +59,12 @@ public class UpgradeSystem : MonoBehaviour
 
         var allUpgrades = new List<Upgrade>();
         allUpgrades.AddRange(_charaterStatsUpgrades);
-        allUpgrades.AddRange(_weaponUpgrades);
+
+        foreach (var weaponUpgrade in _weaponUpgrades)
+        {
+            allUpgrades.Add(weaponUpgrade.CurrentUpgrade);
+        }
+
         allUpgrades.Shuffle();
 
         var result = new List<Upgrade>(count);
@@ -55,7 +75,7 @@ public class UpgradeSystem : MonoBehaviour
 
     private void UpdateWeaponUpgrades(AttackingSystem attackingSystem)
     {
-        var listToDelete = new List<WeaponUpgrade>();
+        var listToDelete = new List<WeaponUpgradesHolder>();
 
         for (int i = 0; i < _weaponUpgrades.Count; i++)
         {
