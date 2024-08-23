@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e66e3718856224fbef863b1ae4391b, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  SurvivalTime: 5
-  PickUpItemColdown: 0
-  StartSpawnEnemyColdown: 0
-  MinSpawnEnemyColdown: 0
+  SurvivalTime: 1000
+  PickUpItemColdown: 10
+  StartSpawnEnemyColdown: 1
+  MinSpawnEnemyColdown: 1
   DecreaseEnemyColdownValue: 0
-  StartEnemySpawnCount: 0
-  SpecialWaveColdown: 0
-  WavesDatas: []
+  StartEnemySpawnCount: 20
+  SpecialWaveColdown: 30
+  WavesDatas:
+  - Title: 
+    chunksOfWaves:
+    - EnemyType: 2
+      Count: 400
+      EnemySpawnColdown: 0.1

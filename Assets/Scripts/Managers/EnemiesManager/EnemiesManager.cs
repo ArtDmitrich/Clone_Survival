@@ -14,6 +14,8 @@ public class EnemiesManager : ItemManager
     [SerializeField] private List<Transform> _movableEnemySpots = new List<Transform>();
     [SerializeField] private List<Transform> _immovableEnemySpots = new List<Transform>();
 
+    [SerializeField] private PursuerEnemiesHelper _pursuerEnemiesHelper;
+
     private WaveSettings _specialWaves;
     private EnemyUpgradeSettings _enemyUpgradeSettings;
 
@@ -90,6 +92,11 @@ public class EnemiesManager : ItemManager
 
                 movableEnemy.CharacterDead += EnemyKilledByPlayer;
                 _enemies.Add(movableEnemy);
+
+                if (movableEnemy.TryGetComponent<PursuerEnemy>(out var pursuerEnemy))
+                {
+                    _pursuerEnemiesHelper.Enemies.Add(pursuerEnemy);
+                }
             }
             else if (item.TryGetComponent<ImmovableEnemy>(out var immovableEnemy))
             {
@@ -119,6 +126,11 @@ public class EnemiesManager : ItemManager
             enemy.CharacterDead -= EnemyKilledByPlayer;
             enemy.CharacterStats.ResetStatsMultipliers();
             _enemies.Remove(enemy);
+
+            if (enemy.TryGetComponent<PursuerEnemy>(out var pursuerEnemy))
+            {
+                _pursuerEnemiesHelper.Enemies.Remove(pursuerEnemy);
+            }
 
             if (_enemies.Count == 0)
             {

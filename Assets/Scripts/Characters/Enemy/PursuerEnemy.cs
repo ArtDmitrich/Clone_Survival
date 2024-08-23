@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PursuerEnemy : MovableEnemy
 {
+    public float SqrMinDistanceToTarget { get { return _sqrMinDistanceToTarget; } }
+
     [SerializeField] private float _minDistanceToTarget;
 
     private float _sqrMinDistanceToTarget;
@@ -11,21 +13,21 @@ public class PursuerEnemy : MovableEnemy
         _sqrMinDistanceToTarget = _minDistanceToTarget * _minDistanceToTarget;
     }
 
-    private void Update()
-    {
-        if (Target == null || CheckMinDistanceToTarget())
-        {
-            Movement.StopMovement();
-            return;
-        }
+    //private void Update()
+    //{
+    //    if (Target == null || CheckMinDistanceToTarget())
+    //    {
+    //        Movement.StopMovement();
+    //        return;
+    //    }
 
-        var newDirection = GetDirectionToMove();
-        if (newDirection != _directionToMove)
-        {
-            _directionToMove = newDirection;
-            Movement.StartMovement(_directionToMove * CharacterStats.MovementSpeed);
-        }
-    }
+    //    var newDirection = GetDirectionToMove();
+    //    if (newDirection != _directionToMove)
+    //    {
+    //        _directionToMove = newDirection;
+    //        Movement.StartMovement(_directionToMove * CharacterStats.MovementSpeed);
+    //    }
+    //}
 
     private bool CheckMinDistanceToTarget()
     {

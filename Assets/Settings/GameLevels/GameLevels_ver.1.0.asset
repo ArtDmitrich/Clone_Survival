@@ -17,7 +17,7 @@ MonoBehaviour:
     Icon: {fileID: 21300000, guid: 9c60f317d8a338045ab7a2f8afea5c5a, type: 3}
     Info: Valley
     Background: {fileID: 21300000, guid: 709b9c8475ddd1640a4afae97cccd6d4, type: 3}
-    WaveSettings: {fileID: 11400000, guid: b77093216124771429959d65aaeab80e, type: 2}
+    WaveSettings: {fileID: 11400000, guid: 1f13e361a0e22a444abdd8aa219ccfc7, type: 2}
     EnemyUpgradeSettings: {fileID: 11400000, guid: 792d57516b02a4e43a25cccc47498672, type: 2}
   - LevelNumber: 2
     Icon: {fileID: 21300000, guid: b890ff21e33fe41418ad14928bf85e12, type: 3}
