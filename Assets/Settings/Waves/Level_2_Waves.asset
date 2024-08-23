@@ -17,8 +17,8 @@ MonoBehaviour:
   StartSpawnEnemyColdown: 1
   MinSpawnEnemyColdown: 0.1
   DecreaseEnemyColdownValue: 0.1
-  StartEnemySpawnCount: 2
-  SpecialWaveColdown: 10
+  StartEnemySpawnCount: 3
+  SpecialWaveColdown: 180
   WavesDatas:
   - Title: Wave_1
     chunksOfWaves:
@@ -43,30 +43,30 @@ MonoBehaviour:
   - Title: Wave_2
     chunksOfWaves:
     - EnemyType: 2
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
     - EnemyType: 2
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
     - EnemyType: 2
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 40
       EnemySpawnColdown: 0.1
   - Title: Wave_3
     chunksOfWaves:
     - EnemyType: 2
-      Count: 100
+      Count: 60
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 100
+      Count: 60
       EnemySpawnColdown: 0.1
     - EnemyType: 0
       Count: 10

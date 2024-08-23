@@ -6750,7 +6750,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 443080254222742837, guid: e8ce64350631c63438a69fd2214407a0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605866509983164750, guid: e8ce64350631c63438a69fd2214407a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605866509983164750, guid: e8ce64350631c63438a69fd2214407a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7550898561542343133, guid: e8ce64350631c63438a69fd2214407a0, type: 3}
       propertyPath: m_Pivot.x

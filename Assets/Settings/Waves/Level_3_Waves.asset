@@ -43,30 +43,30 @@ MonoBehaviour:
   - Title: Wave_2
     chunksOfWaves:
     - EnemyType: 2
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
     - EnemyType: 2
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
     - EnemyType: 2
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 50
+      Count: 35
       EnemySpawnColdown: 0.1
   - Title: Wave_3
     chunksOfWaves:
     - EnemyType: 2
-      Count: 75
+      Count: 55
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 75
+      Count: 55
       EnemySpawnColdown: 0.1
     - EnemyType: 0
       Count: 5
@@ -74,17 +74,17 @@ MonoBehaviour:
   - Title: Wave_4
     chunksOfWaves:
     - EnemyType: 2
-      Count: 100
+      Count: 55
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 100
+      Count: 55
       EnemySpawnColdown: 0.1
     - EnemyType: 0
       Count: 10
       EnemySpawnColdown: 0.5
     - EnemyType: 2
-      Count: 100
+      Count: 55
       EnemySpawnColdown: 0.1
     - EnemyType: 1
-      Count: 100
+      Count: 55
       EnemySpawnColdown: 0.1
